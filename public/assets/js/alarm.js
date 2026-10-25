@@ -23,7 +23,7 @@ export function kontrolEt(son, birim) {
     const baslik = `${alarmMetni(a, birim)}: şimdi ${kurYaz(kur)} ₺`;
     toast(baslik);
     if (a.tarayici && 'Notification' in window && Notification.permission === 'granted') {
-      try { new Notification('FF Döviz kur uyarısı', { body: `${baslik} (TCMB, ${tarihYaz(son.tarih)})`, icon: '/assets/icon-512.png', tag: a.id }); } catch { /* bazı tarayıcılar yalnızca hizmet işçisinden izin verir */ }
+      try { new Notification('Forex kur uyarısı', { body: `${baslik} (TCMB, ${tarihYaz(son.tarih)})`, icon: '/assets/icon-512.png', tag: a.id }); } catch { /* bazı tarayıcılar yalnızca hizmet işçisinden izin verir */ }
     }
   }
   return tetiklenen.length;

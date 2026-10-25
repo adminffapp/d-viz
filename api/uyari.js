@@ -34,7 +34,7 @@ export default async function handler(req, res) {
     await komut(['INCR', eKey]); await komut(['EXPIRE', eKey, SURE_GUN * 86400]);
     const onayUrl = `${ORIGIN()}/api/onay?id=${id}&t=${onayToken}`;
     const ozetMetin = tur === 'hedef' ? `${kod}/TL ${yon === 'altina' ? 'altına inerse' : 'üstüne çıkarsa'} ${deger} ₺` : `${kod}/TL kuru ${baz} ₺ düzeyinden %${deger} ${yon === 'ustu' ? 'artarsa' : yon === 'altina' ? 'azalırsa' : 'artarsa ya da azalırsa'}`;
-    await epostaGonder({ to: eposta, subject: 'Kur uyarınızı onaylayın', text: `FF Döviz kur uyarısı: ${ozetMetin}.\n\nOnaylamak için: ${onayUrl}\n\nBu e-postayı siz istemediyseniz yok sayın; onaylanmayan kayıt silinir.`, html: `<p>FF Döviz kur uyarısı: <b>${kacis(ozetMetin)}</b>.</p><p><a href="${onayUrl}">Uyarıyı onayla</a></p><p style="color:#666;font-size:13px">Bu e-postayı siz istemediyseniz yok sayın; onaylanmayan kayıt ${SURE_GUN} gün içinde silinir.</p>` });
+    await epostaGonder({ to: eposta, subject: 'Kur uyarınızı onaylayın', text: `Forex kur uyarısı: ${ozetMetin}.\n\nOnaylamak için: ${onayUrl}\n\nBu e-postayı siz istemediyseniz yok sayın; onaylanmayan kayıt silinir.`, html: `<p>Forex kur uyarısı: <b>${kacis(ozetMetin)}</b>.</p><p><a href="${onayUrl}">Uyarıyı onayla</a></p><p style="color:#666;font-size:13px">Bu e-postayı siz istemediyseniz yok sayın; onaylanmayan kayıt ${SURE_GUN} gün içinde silinir.</p>` });
     return json(res, 200, { tamam: true, mesaj: 'Onay bağlantısı e-posta adresinize gönderildi.' });
   } catch (e) {
     console.error('uyari hatasi', e.message);

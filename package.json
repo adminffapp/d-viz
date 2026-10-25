@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "FF Döviz: TCMB gösterge kurlarıyla geçmiş tarihli kur, çevirici, grafik ve karşılaştırma sitesi",
+  "description": "Forex: TCMB gösterge kurlarıyla geçmiş tarihli kur, çevirici, grafik ve karşılaştırma sitesi",
   "scripts": {
     "ornek": "node scripts/ornek-veri.mjs",
     "arsiv": "node scripts/arsiv-olustur.mjs",

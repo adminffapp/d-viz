@@ -5,8 +5,8 @@ import { AYAR } from '../../public/assets/js/ayar.js';
 
 const GUN = '25 Ekim 2026'; // yasal metinlerin son güncelleme tarihi
 const SAYFALAR = [
-  { slug: 'hakkimizda', baslik: 'Hakkımızda', aciklama: 'FF Döviz, FF-App Labs tarafından hazırlanan, alım satım yapmayan bir kur ve hesaplama sitesidir.',
-    govde: `<p>FF Döviz, <a href="${AYAR.anaSite}">FF-App Labs</a> tarafından hazırlanan bir kur takip ve hesaplama sitesidir. Amacı, kuru yalnızca bir sayı olarak göstermek yerine; çevirmek, geçmişle karşılaştırmak, izlemek ve belgelemek için yan yana araçlar sunmaktır.</p>
+  { slug: 'hakkimizda', baslik: 'Hakkımızda', aciklama: 'Forex, FF-App Labs tarafından hazırlanan, alım satım yapmayan bir kur ve hesaplama sitesidir.',
+    govde: `<p>Forex, <a href="${AYAR.anaSite}">FF-App Labs</a> tarafından hazırlanan bir kur takip ve hesaplama sitesidir. Amacı, kuru yalnızca bir sayı olarak göstermek yerine; çevirmek, geçmişle karşılaştırmak, izlemek ve belgelemek için yan yana araçlar sunmaktır.</p>
 <h2>Ne yapmaz?</h2><ul><li>Döviz alım satımı yapmaz, aracılık etmez.</li><li>Yatırım tavsiyesi vermez.</li><li>Anlık piyasa fiyatı göstermez; kaynak, günlük TCMB gösterge kurlarıdır.</li></ul>
 <p>Veri kaynağı ve güncelleme düzeni için <a href="/veri-kaynagi/">veri kaynağı</a> sayfasına bakın.</p>` },
   { slug: 'veri-kaynagi', baslik: 'Veri kaynağı ve güncelleme', aciklama: 'Kurların kaynağı T.C. Merkez Bankası göstergesi kurlarıdır; güncelleme, eksik gün ve yuvarlama kuralları.',
@@ -29,11 +29,11 @@ const SAYFALAR = [
 <p>Site ve sahibi, bu bilgilere dayanarak yapılan işlemlerden ya da bilgilerin kullanılamamasından doğan doğrudan veya dolaylı zararlardan sorumlu tutulamaz. Kullanım koşulları için <a href="/kullanim-sartlari/">kullanım şartlarına</a>, kişisel veriler için <a href="/gizlilik/">gizlilik ve KVKK metnine</a> bakın.</p>
 <h2>Dış bağlantılar</h2>
 <p>Sitedeki dış bağlantılar (örneğin <a href="https://www.tcmb.gov.tr" rel="noopener">tcmb.gov.tr</a>) üçüncü kişilere aittir; içeriklerinden ve gizlilik uygulamalarından sorumlu değiliz.</p>` },
-  { slug: 'kullanim-sartlari', baslik: 'Kullanım şartları', aciklama: 'FF Döviz sitesinin kullanım koşulları: hizmetin kapsamı, e-posta uyarıları, fikrî haklar ve sorumluluk sınırı.',
+  { slug: 'kullanim-sartlari', baslik: 'Kullanım şartları', aciklama: 'Forex sitesinin kullanım koşulları: hizmetin kapsamı, e-posta uyarıları, fikrî haklar ve sorumluluk sınırı.',
     govde: `<p class="not">Son güncelleme: ${GUN}</p>
 <p>Siteyi kullanarak aşağıdaki şartları kabul etmiş olursunuz. Kabul etmiyorsanız lütfen siteyi kullanmayın.</p>
 <h2>Hizmetin kapsamı</h2>
-<p>FF Döviz, <a href="${AYAR.anaSite}">FF-App Labs</a> tarafından sunulan, T.C. Merkez Bankası gösterge kurlarıyla çalışan ücretsiz bir kur takip ve hesaplama sitesidir. Üyelik gerektirmez. Döviz alım satımı yapmaz, aracılık etmez, yatırım tavsiyesi vermez. Ayrıntı için <a href="/yasal-uyari/">yasal uyarıya</a> ve <a href="/veri-kaynagi/">veri kaynağı</a> sayfasına bakın.</p>
+<p>Forex, <a href="${AYAR.anaSite}">FF-App Labs</a> tarafından sunulan, T.C. Merkez Bankası gösterge kurlarıyla çalışan ücretsiz bir kur takip ve hesaplama sitesidir. Üyelik gerektirmez. Döviz alım satımı yapmaz, aracılık etmez, yatırım tavsiyesi vermez. Ayrıntı için <a href="/yasal-uyari/">yasal uyarıya</a> ve <a href="/veri-kaynagi/">veri kaynağı</a> sayfasına bakın.</p>
 <h2>Doğruluk ve süreklilik</h2>
 <p>Verileri doğru ve güncel sunmaya çalışırız; ancak kesintisiz, hatasız ya da belirli bir amaca uygun olduğunu garanti etmeyiz. Hizmeti önceden haber vermeden değiştirebilir, geçici ya da kalıcı olarak durdurabiliriz. Kaynak okunamadığında sayfalarda uyarı gösterilir.</p>
 <h2>E-posta uyarıları</h2>

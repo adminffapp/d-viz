@@ -65,7 +65,7 @@ ${ld.map(x => `<script type="application/ld+json">${JSON.stringify(x).replace(/<
 <div id="seritler"></div>
 <header class="ust">
   <div class="kap">
-    <a class="marka" href="/" aria-label="FF Döviz, ana sayfa"><img class="marka-logo" src="/assets/ffapp-logo-900.png" alt="" width="196" height="44"><img class="marka-coin" src="/assets/coin.webp" alt="" width="46" height="46" decoding="async"></a>
+    <a class="marka" href="/" aria-label="Forex, ana sayfa"><img class="marka-logo" src="/assets/ffapp-logo-900.png" alt="" width="196" height="44"><img class="marka-coin" src="/assets/coin.webp" alt="" width="46" height="46" decoding="async"></a>
     <nav class="menu" id="menu" aria-label="Ana menü">${menu}</nav>
     <div class="ust-arac">
       <button class="ikon-dugme" id="tema-dugme" type="button" aria-label="Temayı değiştir" title="Koyu / açık tema">${IKON.gunes}</button>

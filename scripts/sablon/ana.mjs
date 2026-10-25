@@ -145,9 +145,9 @@ export function anaSayfa(c) {
   </div></div>
 </section>`;
   return sayfa({
-    yol: '/', baslik: 'FF Döviz: geçmiş tarihli kur, çevirici, grafik ve karşılaştırma', tam: true,
+    yol: '/', baslik: 'Forex: geçmiş tarihli kur, çevirici, grafik ve karşılaştırma', tam: true,
     aciklama: 'TCMB gösterge kurlarıyla bir tarihteki kuru bulun, tutarın o günkü ve bugünkü TL değerini hesaplayın; döviz çevirici, grafik, karşılaştırma ve kur uyarısı. Üyelik gerekmez.',
     govde, js: ['ana.js'], surum: c.surum,
-    jsonld: [{ '@context': 'https://schema.org', '@type': 'WebApplication', name: 'FF Döviz', url: AYAR.origin + '/', applicationCategory: 'FinanceApplication', operatingSystem: 'Web', inLanguage: 'tr', offers: { '@type': 'Offer', price: '0', priceCurrency: 'TRY' } }],
+    jsonld: [{ '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Forex', url: AYAR.origin + '/', applicationCategory: 'FinanceApplication', operatingSystem: 'Web', inLanguage: 'tr', offers: { '@type': 'Offer', price: '0', priceCurrency: 'TRY' } }],
   });
 }

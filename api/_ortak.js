@@ -33,6 +33,6 @@ export async function hizSiniri(anahtar, sinir, sn) {
 export function json(res, kod, nesne) { res.statusCode = kod; res.setHeader('Content-Type', 'application/json; charset=utf-8'); res.setHeader('Cache-Control', 'no-store'); res.end(JSON.stringify(nesne)); }
 export function sayfaYanit(res, kod, baslik, metin) {
   res.statusCode = kod; res.setHeader('Content-Type', 'text/html; charset=utf-8'); res.setHeader('Cache-Control', 'no-store');
-  res.end(`<!doctype html><html lang="tr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>${kacis(baslik)} | FF Döviz</title><body style="font:18px/1.6 system-ui,sans-serif;max-width:560px;margin:15vh auto;padding:0 20px;background:#0F0B08;color:#E4D5B7"><h1 style="font-weight:300">${kacis(baslik)}</h1><p>${kacis(metin)}</p><p><a style="color:#D4E27A" href="${ORIGIN()}/uyarilar/">Uyarılara dön</a></p></body></html>`);
+  res.end(`<!doctype html><html lang="tr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>${kacis(baslik)} | Forex</title><body style="font:18px/1.6 system-ui,sans-serif;max-width:560px;margin:15vh auto;padding:0 20px;background:#0F0B08;color:#E4D5B7"><h1 style="font-weight:300">${kacis(baslik)}</h1><p>${kacis(metin)}</p><p><a style="color:#D4E27A" href="${ORIGIN()}/uyarilar/">Uyarılara dön</a></p></body></html>`);
 }
 export const kayitAnahtar = id => `uyari:${id}`;

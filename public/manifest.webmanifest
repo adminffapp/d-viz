@@ -1,6 +1,6 @@
 {
-  "name": "FF Döviz",
-  "short_name": "FF Döviz",
+  "name": "Forex",
+  "short_name": "Forex",
   "description": "TCMB gösterge kurları: çevirici, geçmiş kur, karşılaştırma ve takip.",
   "lang": "tr",
   "start_url": "/?kaynak=pwa",

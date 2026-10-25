@@ -12,7 +12,7 @@ if (!r) {
   kok.innerHTML = `
     <div class="yazdirma-gizle eylemler" style="margin-bottom:20px"><button class="dugme" type="button" id="yazdir">PDF olarak kaydet / yazdır</button><a class="dugme ikincil" href="javascript:history.back()">Geri dön</a></div>
     ${r.ornek ? '<p class="not-kutu" style="margin-bottom:16px"><b>Örnek veri.</b> Bu raporun kurları gerçek TCMB verisi değildir.</p>' : ''}
-    <p class="kucuk soluk">FF Döviz · ffapplabs.com</p>
+    <p class="kucuk soluk">Forex · ffapplabs.com</p>
     <h1>${kacis(r.baslik)}</h1>
     <p class="soluk">Oluşturulma: ${kacis(olusturma)} · Veri tarihi: ${kacis(tarihYaz(r.veriTarihi, { gun: true }))}</p>
     ${r.ozet?.length ? `<table><tbody>${r.ozet.map(([k, v]) => `<tr><th scope="row" style="width:40%">${kacis(k)}</th><td>${kacis(v)}</td></tr>`).join('')}</tbody></table>` : ''}
@@ -26,5 +26,5 @@ if (!r) {
     const kap = $('#rg');
     grafik(kap, { seriler: [{ ad: r.grafik.baslik, renk: 'var(--seri1)', noktalar: r.grafik.noktalar }], yaz: v => sayiYaz(v, 4), yukseklik: 240, ad: r.grafik.baslik });
   }
-  document.title = r.baslik + ' | FF Döviz';
+  document.title = r.baslik + ' | Forex';
 }

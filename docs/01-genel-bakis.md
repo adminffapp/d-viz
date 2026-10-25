@@ -1,4 +1,4 @@
-# FF Döviz — Genel bakış
+# Forex — Genel bakış
 
 Alım satım yapmayan, TCMB gösterge kurlarına dayanan bir kur sitesi. Google'ın kur kutusundan farkı: çevirmek, geçmişle karşılaştırmak, izlemek, uyarı kurmak ve rapor almak için yan yana araçlar sunması.
 

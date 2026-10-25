@@ -1,4 +1,4 @@
-# FF Döviz
+# Forex
 
 TCMB gösterge kurlarıyla çalışan çevirici, geçmiş kur, karşılaştırma, takip, uyarı ve rapor sitesi.
 

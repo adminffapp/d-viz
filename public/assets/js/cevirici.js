@@ -71,7 +71,7 @@ export async function cevirici(kok) {
   $$('[data-hizli]', kok).forEach(b => b.addEventListener('click', () => { tutar.value = sayiSerbest(Number(b.dataset.hizli), 0); yon = 'ileri'; tetik(); gecikmeli(); }));
   chip.addEventListener('click', e => { const b = e.target.closest('[data-k]'); if (!b) return; const k = b.dataset.k; secili.has(k) ? secili.delete(k) : secili.add(k); b.setAttribute('aria-pressed', secili.has(k)); tetik(); });
   $('[data-kopyala]', kok).addEventListener('click', () => kopyala($('.buyuk-sonuc', kok).textContent));
-  $('[data-paylas]', kok).addEventListener('click', () => paylas({ baslik: 'FF Döviz hesabı', metin: $('.buyuk-sonuc', kok).textContent, url: location.href }));
+  $('[data-paylas]', kok).addEventListener('click', () => paylas({ baslik: 'Forex hesabı', metin: $('.buyuk-sonuc', kok).textContent, url: location.href }));
   $('[data-sepet]', kok).addEventListener('click', () => { const s = kok._son; if (!s || kaynak.value === 'TRY') return toast('Sepete yalnızca döviz eklenir', 'hata'); sepet.ekle(kaynak.value, s.girdi); toast(`${sayiSerbest(s.girdi, 2)} ${kaynak.value} sepete eklendi`); });
   $('[data-csv]', kok).addEventListener('click', () => {
     const r = kok._cokluSatir || [], s = kok._son;

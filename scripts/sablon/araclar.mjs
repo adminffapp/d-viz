@@ -59,7 +59,7 @@ function ceviriciSayfa(c) {
 </div>
 </div>
 ${reklam('orta')}`;
-  return sayfa({ yol: '/cevirici/', baslik: `Döviz çevirici: TL, dolar, euro ve ${c.meta.length} para birimi`, aciklama: 'TCMB gösterge kurlarıyla herhangi bir para biriminden diğerine çevirin. Çift yönlü, komisyonlu net tutar, çapraz kur, aynı anda birden fazla birim. Üyelik gerekmez.', govde, js: ['cevirici-sayfa.js'], surum: c.surum, jsonld: [kirintiLd([['/cevirici/', 'Çevirici']], AYAR.origin), { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'FF Döviz çevirici', url: AYAR.origin + '/cevirici/', applicationCategory: 'FinanceApplication', operatingSystem: 'Web', inLanguage: 'tr', offers: { '@type': 'Offer', price: '0', priceCurrency: 'TRY' } }] });
+  return sayfa({ yol: '/cevirici/', baslik: `Döviz çevirici: TL, dolar, euro ve ${c.meta.length} para birimi`, aciklama: 'TCMB gösterge kurlarıyla herhangi bir para biriminden diğerine çevirin. Çift yönlü, komisyonlu net tutar, çapraz kur, aynı anda birden fazla birim. Üyelik gerekmez.', govde, js: ['cevirici-sayfa.js'], surum: c.surum, jsonld: [kirintiLd([['/cevirici/', 'Çevirici']], AYAR.origin), { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Forex çevirici', url: AYAR.origin + '/cevirici/', applicationCategory: 'FinanceApplication', operatingSystem: 'Web', inLanguage: 'tr', offers: { '@type': 'Offer', price: '0', priceCurrency: 'TRY' } }] });
 }
 
 export async function uret(c, ekle) {
