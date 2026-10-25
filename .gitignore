@@ -1,0 +1,10 @@
+node_modules
+.gecici
+.env
+.vercel
+
+# Hizmet hesabı anahtarları: asla depoya girmemeli
+*firebase-adminsdk*.json
+*service-account*.json
+.env
+.env.*

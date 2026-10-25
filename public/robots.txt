@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /yonetim/
+Disallow: /rapor/
+
+Sitemap: https://doviz.ffapplabs.com/sitemap.xml

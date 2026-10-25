@@ -1,0 +1,37 @@
+name: Günlük kur güncellemesi
+on:
+  schedule:
+    - cron: '45 12 * * 1-5'   # hafta içi 15:45 (TR). TCMB bülteni 15:30 civarı yayımlanır.
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  guncelle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm ci || npm install
+      - name: Bülteni arşive ekle
+        run: npm run guncelle
+      - name: Sayfaları üret (yayın kipi)
+        run: npm run yayin-uret
+      - name: Sağlık denetimi
+        run: npm run saglik
+      - name: Uyarıları gönder
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+          UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RESEND_FROM: ${{ secrets.RESEND_FROM }}
+          SITE_ORIGIN: https://doviz.ffapplabs.com
+        run: npm run uyari
+      - name: Değişiklikleri kaydet
+        if: always()
+        run: |
+          git config user.name "kur-botu"
+          git config user.email "kur-botu@users.noreply.github.com"
+          git add -A public/data public
+          git diff --cached --quiet || (git commit -m "Kur verisi güncellendi" && git push)

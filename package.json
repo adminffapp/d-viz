@@ -1,0 +1,27 @@
+{
+  "name": "ff-doviz",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "FF Döviz: TCMB gösterge kurlarıyla geçmiş tarihli kur, çevirici, grafik ve karşılaştırma sitesi",
+  "scripts": {
+    "ornek": "node scripts/ornek-veri.mjs",
+    "arsiv": "node scripts/arsiv-olustur.mjs",
+    "guncelle": "node scripts/arsiv-guncelle.mjs",
+    "uret": "node scripts/uret.mjs",
+    "yayin-uret": "node scripts/uret.mjs --yayin",
+    "paketle": "node scripts/paketle.mjs",
+    "saglik": "node scripts/saglik.mjs",
+    "uyari": "node scripts/uyari-gonder.mjs",
+    "test": "node --test test/*.test.mjs",
+    "dev": "node scripts/dev.mjs"
+  },
+  "dependencies": {
+    "firebase-admin": "^13.0.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "three": "^0.170.0",
+    "@fontsource-variable/work-sans": "^5.1.0"
+  }
+}

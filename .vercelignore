@@ -1,0 +1,11 @@
+node_modules
+.gecici
+test
+docs
+scripts
+src
+.github
+*firebase-adminsdk*.json
+*service-account*.json
+.env
+.env.*
