@@ -1,5 +1,5 @@
 // Servis çalışanı: kabuk önbelleği + son bilinen veri. Sürüm her üretimde değişir.
-const SURUM = '5fd6a826';
+const SURUM = 'c89deef6';
 const KABUK = 'kabuk-' + SURUM, VERI = 'veri-v1';
 const ON = ['/', '/kurlar/', '/cevirici/', '/gecmis-kur/', '/takip/', '/assets/doviz.css', '/data/son.json', '/data/meta.json'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(KABUK).then(c => c.addAll(ON).catch(() => {})).then(() => self.skipWaiting())); });

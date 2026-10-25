@@ -2,7 +2,7 @@
 import { createHash, randomBytes } from 'node:crypto';
 import { anahtarKaynagi } from './_firestore.js';
 
-export const ORIGIN = () => process.env.SITE_ORIGIN || 'https://doviz.ffapplabs.com';
+export const ORIGIN = () => process.env.SITE_ORIGIN || 'https://forex.ffapplabs.com';
 export const SURE_GUN = 180; // kayıt saklama süresi (KVKK: gereğinden uzun tutulmaz)
 export const HEPSI_KODLAR = ['USD', 'AUD', 'DKK', 'EUR', 'GBP', 'CHF', 'SEK', 'CAD', 'KWD', 'NOK', 'SAR', 'JPY', 'RON', 'RUB', 'CNY', 'PKR', 'QAR', 'KRW', 'AZN', 'AED'];
 

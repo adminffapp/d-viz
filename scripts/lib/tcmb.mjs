@@ -5,7 +5,7 @@
 import { KODLAR } from './meta.mjs';
 
 const TABAN = 'https://www.tcmb.gov.tr/kurlar';
-const UA = 'FF-Doviz/1.0 (+https://doviz.ffapplabs.com; veri arsivi)';
+const UA = 'FF-Doviz/1.0 (+https://forex.ffapplabs.com; veri arsivi)';
 
 export const iki = n => String(n).padStart(2, '0');
 export const isoTarih = d => `${d.getUTCFullYear()}-${iki(d.getUTCMonth() + 1)}-${iki(d.getUTCDate())}`;

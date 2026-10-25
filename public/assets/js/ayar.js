@@ -1,7 +1,7 @@
 // Tek yerden ayar. Boş bırakılan alanlar özelliği kapatır; sitede sahte değer gösterilmez.
 export const AYAR = {
   site: 'Forex',
-  origin: 'https://doviz.ffapplabs.com',   // yayın alan adı (değişirse docs/04-yayina-alma.md)
+  origin: 'https://forex.ffapplabs.com',   // yayın alan adı (değişirse docs/04-yayina-alma.md)
   anaSite: 'https://ffapplabs.com',
   hub: 'https://hub.ffapplabs.com',
   eposta: 'contact@ffapplabs.com',

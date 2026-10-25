@@ -3,4 +3,4 @@ Allow: /
 Disallow: /yonetim/
 Disallow: /rapor/
 
-Sitemap: https://doviz.ffapplabs.com/sitemap.xml
+Sitemap: https://forex.ffapplabs.com/sitemap.xml

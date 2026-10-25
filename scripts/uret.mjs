@@ -58,6 +58,19 @@ for (const s of sayfalar) {
 const sm = sayfalar.filter(s => s.sitemap);
 await writeFile(path.join(cikti, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sm.map(s => `<url><loc>${AYAR.origin}${s.yol}</loc><lastmod>${s.lastmod}</lastmod><changefreq>${s.degisim}</changefreq><priority>${s.oncelik}</priority></url>`).join('\n')}\n</urlset>\n`);
 await writeFile(path.join(cikti, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /yonetim/\nDisallow: /rapor/\n\nSitemap: ${AYAR.origin}/sitemap.xml\n`);
+// llms.txt: yapay zekâ araçları için siteyi tanıtan kısa dizin (başlıklar sayfaların kendi <title> değerinden gelir)
+{
+  const baslikAl = yol => { const s = sayfalar.find(x => x.yol === yol); const m = s && /<title>([^<]*)<\/title>/.exec(s.html); return m ? m[1].replace(/\s*\|\s*Forex$/, '') : null; };
+  const bolum = (ad, yollar) => { const l = yollar.map(y => { const b = baslikAl(y); return b ? `- [${b}](${AYAR.origin}${y})` : null; }).filter(Boolean); return l.length ? `## ${ad}\n\n${l.join('\n')}\n` : ''; };
+  const kurYollari = sayfalar.filter(s => /^\/kur\/[^/]+\/$/.test(s.yol)).map(s => s.yol);
+  const rehber = sayfalar.filter(s => /^\/rehber\/[^/]+\/$/.test(s.yol)).map(s => s.yol);
+  const metin = `# Forex\n\n> Forex, T.C. Merkez Bankası gösterge kurlarıyla güncel ve geçmiş tarihli döviz kuru bilgisi, para birimi çevirici, grafik ve karşılaştırma araçları sunan ücretsiz bir sitedir. FF-App Labs tarafından hazırlanır. Alım satım yapmaz, yatırım tavsiyesi vermez.\n\nVeriler TCMB'nin günlük bülteninden gelir; hafta sonu ve resmî tatillerde son iş gününün bülteni geçerlidir. Kurlar anlık piyasa fiyatı değildir.\n\n` +
+    bolum('Araçlar', ['/', '/cevirici/', '/karsilastir/', '/tarihe-gore-kur/', '/gecmis-kur/', '/kurlar/', '/takip/', '/uyarilar/']) + '\n' +
+    bolum('Para birimi kur sayfaları', kurYollari) + '\n' +
+    bolum('Rehber', ['/rehber/', ...rehber]) + '\n' +
+    bolum('Veri ve yasal', ['/veri-kaynagi/', '/yasal-uyari/', '/gizlilik/', '/kullanim-sartlari/', '/hakkimizda/', '/iletisim/']) + `\n## Site haritası\n\n- [sitemap.xml](${AYAR.origin}/sitemap.xml)\n`;
+  await writeFile(path.join(cikti, 'llms.txt'), metin);
+}
 // hizmet işçisi: sürüm gömülür
 const swKaynak = await readFile(path.join(KOK, 'scripts/sablon/sw.js'), 'utf8').catch(() => null);
 if (swKaynak) await writeFile(path.join(cikti, 'sw.js'), swKaynak.replace('__SURUM__', surum));

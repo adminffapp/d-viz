@@ -1,0 +1,62 @@
+# Forex
+
+> Forex, T.C. Merkez Bankası gösterge kurlarıyla güncel ve geçmiş tarihli döviz kuru bilgisi, para birimi çevirici, grafik ve karşılaştırma araçları sunan ücretsiz bir sitedir. FF-App Labs tarafından hazırlanır. Alım satım yapmaz, yatırım tavsiyesi vermez.
+
+Veriler TCMB'nin günlük bülteninden gelir; hafta sonu ve resmî tatillerde son iş gününün bülteni geçerlidir. Kurlar anlık piyasa fiyatı değildir.
+
+## Araçlar
+
+- [Forex: geçmiş tarihli kur, çevirici, grafik ve karşılaştırma](https://forex.ffapplabs.com/)
+- [Döviz çevirici: TL, dolar, euro ve 20 para birimi](https://forex.ffapplabs.com/cevirici/)
+- [Kur karşılaştırma: dolar euro, dönemler, yükselen ve düşenler](https://forex.ffapplabs.com/karsilastir/)
+- [Tarihe göre kur: o günün TCMB dolar, euro kuru](https://forex.ffapplabs.com/tarihe-gore-kur/)
+- [Geçmiş tarihli kur hesabı: tarihe göre dolar, euro, sterlin](https://forex.ffapplabs.com/gecmis-kur/)
+- [Tüm döviz kurları: TCMB gösterge kurları listesi](https://forex.ffapplabs.com/kurlar/)
+- [Takip listem ve döviz sepeti](https://forex.ffapplabs.com/takip/)
+- [Kur uyarısı: hedef kura ulaşınca bildirim](https://forex.ffapplabs.com/uyarilar/)
+
+## Para birimi kur sayfaları
+
+- [Dolar kuru (USD/TL): bugün, grafik ve geçmiş](https://forex.ffapplabs.com/kur/dolar/)
+- [Euro kuru (EUR/TL): bugün, grafik ve geçmiş](https://forex.ffapplabs.com/kur/euro/)
+- [Sterlin kuru (GBP/TL): bugün, grafik ve geçmiş](https://forex.ffapplabs.com/kur/sterlin/)
+- [İsviçre frangı kuru (CHF/TL): bugün, grafik ve geçmiş](https://forex.ffapplabs.com/kur/isvicre-frangi/)
+- [Japon yeni kuru (JPY/TL): bugün, grafik ve geçmiş](https://forex.ffapplabs.com/kur/japon-yeni/)
+- [Kanada doları kuru (CAD/TL): bugün, grafik ve geçmiş](https://forex.ffapplabs.com/kur/kanada-dolari/)
+- [Avustralya doları kuru (AUD/TL): bugün, grafik ve geçmiş](https://forex.ffapplabs.com/kur/avustralya-dolari/)
+- [Suudi riyali kuru (SAR/TL): bugün, grafik ve geçmiş](https://forex.ffapplabs.com/kur/suudi-riyali/)
+- [BAE dirhemi kuru (AED/TL): bugün, grafik ve geçmiş](https://forex.ffapplabs.com/kur/bae-dirhemi/)
+- [Çin yuanı kuru (CNY/TL): bugün, grafik ve geçmiş](https://forex.ffapplabs.com/kur/cin-yuani/)
+- [Azerbaycan manatı kuru (AZN/TL): bugün, grafik ve geçmiş](https://forex.ffapplabs.com/kur/azerbaycan-manati/)
+- [Kuveyt dinarı kuru (KWD/TL): bugün, grafik ve geçmiş](https://forex.ffapplabs.com/kur/kuveyt-dinari/)
+- [Katar riyali kuru (QAR/TL): bugün, grafik ve geçmiş](https://forex.ffapplabs.com/kur/katar-riyali/)
+- [Norveç kronu kuru (NOK/TL): bugün, grafik ve geçmiş](https://forex.ffapplabs.com/kur/norvec-kronu/)
+- [İsveç kronu kuru (SEK/TL): bugün, grafik ve geçmiş](https://forex.ffapplabs.com/kur/isvec-kronu/)
+- [Danimarka kronu kuru (DKK/TL): bugün, grafik ve geçmiş](https://forex.ffapplabs.com/kur/danimarka-kronu/)
+- [Rus rublesi kuru (RUB/TL): bugün, grafik ve geçmiş](https://forex.ffapplabs.com/kur/rus-rublesi/)
+- [Romen leyi kuru (RON/TL): bugün, grafik ve geçmiş](https://forex.ffapplabs.com/kur/romen-leyi/)
+- [Güney Kore wonu kuru (KRW/TL): bugün, grafik ve geçmiş](https://forex.ffapplabs.com/kur/guney-kore-wonu/)
+- [Pakistan rupisi kuru (PKR/TL): bugün, grafik ve geçmiş](https://forex.ffapplabs.com/kur/pakistan-rupisi/)
+
+## Rehber
+
+- [Döviz rehberi](https://forex.ffapplabs.com/rehber/)
+- [Döviz kuru nedir, nasıl belirlenir?](https://forex.ffapplabs.com/rehber/kur-nedir/)
+- [TCMB kuru ile bankadaki ve piyasadaki kur neden farklı?](https://forex.ffapplabs.com/rehber/tcmb-kuru-ve-piyasa-kuru/)
+- [Alış-satış farkı (makas) nedir?](https://forex.ffapplabs.com/rehber/alis-satis-farki/)
+- [Çapraz kur nedir, nasıl hesaplanır?](https://forex.ffapplabs.com/rehber/capraz-kur/)
+- [Hafta sonu ve resmî tatillerde kur](https://forex.ffapplabs.com/rehber/hafta-sonu-ve-tatil-kurlari/)
+- [Geçmiş bir tarihte döviz değeri nasıl hesaplanır?](https://forex.ffapplabs.com/rehber/gecmis-tarihli-hesaplama/)
+
+## Veri ve yasal
+
+- [Veri kaynağı ve güncelleme](https://forex.ffapplabs.com/veri-kaynagi/)
+- [Yasal uyarı](https://forex.ffapplabs.com/yasal-uyari/)
+- [Gizlilik, KVKK ve çerezler](https://forex.ffapplabs.com/gizlilik/)
+- [Kullanım şartları](https://forex.ffapplabs.com/kullanim-sartlari/)
+- [Hakkımızda](https://forex.ffapplabs.com/hakkimizda/)
+- [İletişim](https://forex.ffapplabs.com/iletisim/)
+
+## Site haritası
+
+- [sitemap.xml](https://forex.ffapplabs.com/sitemap.xml)
