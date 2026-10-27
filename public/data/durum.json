@@ -4,11 +4,16 @@
    "zaman": "2026-10-26T18:52:21.771Z",
    "sonuc": "tamam",
    "mesaj": "1 yeni bülten, son bülten 2026-10-26"
+  },
+  {
+   "zaman": "2026-10-27T18:17:16.395Z",
+   "sonuc": "tamam",
+   "mesaj": "1 yeni bülten, son bülten 2026-10-27"
   }
  ],
- "sonBulten": "2026-10-26",
- "sonBasari": "2026-10-26T18:52:21.770Z",
- "sonKontrol": "2026-10-26T18:52:21.771Z",
+ "sonBulten": "2026-10-27",
+ "sonBasari": "2026-10-27T18:17:16.395Z",
+ "sonKontrol": "2026-10-27T18:17:16.395Z",
  "sonSonuc": "tamam",
- "sonMesaj": "1 yeni bülten, son bülten 2026-10-26"
+ "sonMesaj": "1 yeni bülten, son bülten 2026-10-27"
 }
