@@ -60,7 +60,7 @@ export function anaSayfa(c) {
         </div>
         </div>
         </div>
-        <p class="hero-not">Kaynak: Türkiye Cumhuriyet Merkez Bankası. Kurlar hafta içi her gün 15:30'dan sonra yayımlanır; hafta sonu ve tatilde bir önceki bülten geçerlidir.</p>
+        <p class="hero-not">Kaynak: Türkiye Cumhuriyet Merkez Bankası. Bülten hafta içi her gün 15:30'dan sonra yayımlanır; hafta sonu ve tatilde bir önceki bülten geçerlidir. Gün içindeki hareket için aşağıdaki saatlik piyasa kurlarına bakın.</p>
         </div>
        </div>
       </div>
@@ -147,7 +147,7 @@ export function anaSayfa(c) {
 </section>`;
   return sayfa({
     yol: '/', baslik: 'Forex: geçmiş tarihli kur, çevirici, grafik ve karşılaştırma', tam: true,
-    aciklama: 'TCMB gösterge kurlarıyla bir tarihteki kuru bulun, tutarın o günkü ve bugünkü TL değerini hesaplayın; döviz çevirici, grafik, karşılaştırma ve kur uyarısı. Üyelik gerekmez.',
+    aciklama: 'TCMB kurlarıyla geçmiş tarihli kur ve TL değeri hesaplayın; saatte bir güncellenen piyasa kurları, döviz çevirici, grafik, karşılaştırma ve kur uyarısı. Üyelik gerekmez.',
     govde, js: ['ana.js', 'piyasa.js'], surum: c.surum,
     jsonld: [{ '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Forex', url: AYAR.origin + '/', applicationCategory: 'FinanceApplication', operatingSystem: 'Web', inLanguage: 'tr', offers: { '@type': 'Offer', price: '0', priceCurrency: 'TRY' } }],
   });

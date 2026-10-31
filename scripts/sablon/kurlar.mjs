@@ -13,7 +13,7 @@ const tlBirim = (c, kod, i = 0) => (c.son.kurlar[kod] ? c.son.kurlar[kod][i] / c
 function kurlarSayfasi(c) {
   const satirlar = c.meta.map(m => satirHTML(m, c.son.kurlar[m.kod], c.ozet.ozet[m.kod])).join('\n');
   const alfabe = [...c.meta].sort((a, b) => a.ad.localeCompare(b.ad, 'tr')).map(m => `<li><a href="/kur/${m.slug}/"><span class="sol"><b>${e(m.ad)}</b><span class="kucuk soluk">${m.kod} · sembol ${e(m.sembol)}${m.birim > 1 ? ` · ${m.birim} birim için` : ''}</span></span><span class="sayi">${kurYaz(c.son.kurlar[m.kod]?.[0])} ₺</span></a></li>`).join('');
-  const govde = `${ustBolum({ kirintiHtml: kirinti([null, 'Kurlar']), baslik: 'Tüm döviz kurları', giris: `TCMB'nin ${e(tarihYaz(c.son.tarih))} bülteninde yayımlanan ${c.meta.length} para birimi.` })}
+  const govde = `${ustBolum({ kirintiHtml: kirinti([null, 'Kurlar']), baslik: 'Tüm döviz kurları', giris: `TCMB'nin ${e(tarihYaz(c.son.tarih))} bülteninde yayımlanan ${c.meta.length} para birimi ve saatte bir güncellenen piyasa kurları.` })}
 <section class="kap" data-piyasa="liste" aria-labelledby="piyasa-b" style="padding-bottom:24px" hidden></section>
 <div class="kap" style="padding-bottom:48px"><div id="kur-tablo" data-kur-tablo>
   <div class="tablo-arac"><div class="ara"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><label class="gizli-okur" for="kur-ara">Para birimi ara</label><input class="girdi" id="kur-ara" type="search" placeholder="Ad veya kod: dolar, EUR, sterlin" autocomplete="off"></div>
@@ -24,7 +24,7 @@ function kurlarSayfasi(c) {
 ${reklam('orta')}
 <section class="kap bolum" aria-labelledby="alfabe-b" style="padding-top:0"><h2 id="alfabe-b" class="bolum-baslik">Alfabetik liste</h2>
 <ul class="rehber-liste" style="list-style:none;padding:0">${alfabe}</ul></section>`;
-  return sayfa({ yol: '/kurlar/', baslik: 'Tüm döviz kurları: TCMB gösterge kurları listesi', aciklama: `TCMB ${tarihYaz(c.son.tarih)} bülteni: dolar, euro, sterlin ve ${c.meta.length} para biriminin alış, satış kurları, günlük değişimi. Ada, koda göre arama ve sıralama.`, govde, js: ['kurlar-sayfa.js', 'piyasa.js'], surum: c.surum, jsonld: [kirintiLd([['/kurlar/', 'Kurlar']], AYAR.origin)] });
+  return sayfa({ yol: '/kurlar/', baslik: 'Tüm döviz kurları: TCMB gösterge kurları listesi', aciklama: `TCMB ${tarihYaz(c.son.tarih)} bülteni ve saatlik piyasa kurları: dolar, euro, sterlin ve ${c.meta.length} para biriminin alış, satış kurları ve değişimi. Ada, koda göre arama.`, govde, js: ['kurlar-sayfa.js', 'piyasa.js'], surum: c.surum, jsonld: [kirintiLd([['/kurlar/', 'Kurlar']], AYAR.origin)] });
 }
 
 function detaySayfasi(c, m) {

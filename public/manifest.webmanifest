@@ -1,7 +1,7 @@
 {
   "name": "Forex",
   "short_name": "Forex",
-  "description": "TCMB gösterge kurları: çevirici, geçmiş kur, karşılaştırma ve takip.",
+  "description": "TCMB gösterge kurları ve saatlik piyasa kurları: çevirici, geçmiş kur, karşılaştırma ve takip.",
   "lang": "tr",
   "start_url": "/?kaynak=pwa",
   "scope": "/",
