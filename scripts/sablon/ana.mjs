@@ -68,6 +68,7 @@ export function anaSayfa(c) {
   </div>
   <noscript><div class="kap"><p class="not-kutu" style="margin-top:16px">Hesaplayıcı JavaScript gerektirir. Aşağıdaki tablo ve sayfalar yine de çalışır.</p></div></noscript>
 </section>
+<section class="kap" data-piyasa="liste" aria-labelledby="piyasa-b" style="padding-block:24px" hidden></section>
 
 <section class="blok sag" aria-labelledby="b0">
   <div class="kap"><div class="blok-grid">
@@ -147,7 +148,7 @@ export function anaSayfa(c) {
   return sayfa({
     yol: '/', baslik: 'Forex: geçmiş tarihli kur, çevirici, grafik ve karşılaştırma', tam: true,
     aciklama: 'TCMB gösterge kurlarıyla bir tarihteki kuru bulun, tutarın o günkü ve bugünkü TL değerini hesaplayın; döviz çevirici, grafik, karşılaştırma ve kur uyarısı. Üyelik gerekmez.',
-    govde, js: ['ana.js'], surum: c.surum,
+    govde, js: ['ana.js', 'piyasa.js'], surum: c.surum,
     jsonld: [{ '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Forex', url: AYAR.origin + '/', applicationCategory: 'FinanceApplication', operatingSystem: 'Web', inLanguage: 'tr', offers: { '@type': 'Offer', price: '0', priceCurrency: 'TRY' } }],
   });
 }

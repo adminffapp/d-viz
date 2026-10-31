@@ -8,6 +8,7 @@
     "ornek": "node scripts/ornek-veri.mjs",
     "arsiv": "node scripts/arsiv-olustur.mjs",
     "guncelle": "node scripts/arsiv-guncelle.mjs",
+    "saatlik": "node scripts/saatlik.mjs",
     "uret": "node scripts/uret.mjs",
     "yayin-uret": "node scripts/uret.mjs --yayin",
     "paketle": "node scripts/paketle.mjs",

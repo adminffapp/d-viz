@@ -6,6 +6,7 @@ TCMB gösterge kurlarıyla çalışan çevirici, geçmiş kur, karşılaştırma
 npm install
 npm run ornek     # işaretli örnek veri (yalnızca deneme)
 npm run uret      # sayfaları üret
+npm run saatlik   # saatlik piyasa kuru (OXR_APP_ID gerekir; hafta sonu için --zorla)
 npm run dev       # http://localhost:4173 (portu terminalde görürsünüz)
 npm test
 ```

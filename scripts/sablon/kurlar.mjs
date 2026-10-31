@@ -14,6 +14,7 @@ function kurlarSayfasi(c) {
   const satirlar = c.meta.map(m => satirHTML(m, c.son.kurlar[m.kod], c.ozet.ozet[m.kod])).join('\n');
   const alfabe = [...c.meta].sort((a, b) => a.ad.localeCompare(b.ad, 'tr')).map(m => `<li><a href="/kur/${m.slug}/"><span class="sol"><b>${e(m.ad)}</b><span class="kucuk soluk">${m.kod} · sembol ${e(m.sembol)}${m.birim > 1 ? ` · ${m.birim} birim için` : ''}</span></span><span class="sayi">${kurYaz(c.son.kurlar[m.kod]?.[0])} ₺</span></a></li>`).join('');
   const govde = `${ustBolum({ kirintiHtml: kirinti([null, 'Kurlar']), baslik: 'Tüm döviz kurları', giris: `TCMB'nin ${e(tarihYaz(c.son.tarih))} bülteninde yayımlanan ${c.meta.length} para birimi.` })}
+<section class="kap" data-piyasa="liste" aria-labelledby="piyasa-b" style="padding-bottom:24px" hidden></section>
 <div class="kap" style="padding-bottom:48px"><div id="kur-tablo" data-kur-tablo>
   <div class="tablo-arac"><div class="ara"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><label class="gizli-okur" for="kur-ara">Para birimi ara</label><input class="girdi" id="kur-ara" type="search" placeholder="Ad veya kod: dolar, EUR, sterlin" autocomplete="off"></div>
   <div class="ip" role="group" aria-label="Görünüm"><button type="button" data-gorunum="populer" aria-pressed="false">Popüler</button><button type="button" data-gorunum="tum" aria-pressed="true">Tümü</button><button type="button" data-gorunum="favori" aria-pressed="false">Favorilerim</button></div><span class="kucuk soluk" data-sayac aria-live="polite"></span></div>
@@ -23,7 +24,7 @@ function kurlarSayfasi(c) {
 ${reklam('orta')}
 <section class="kap bolum" aria-labelledby="alfabe-b" style="padding-top:0"><h2 id="alfabe-b" class="bolum-baslik">Alfabetik liste</h2>
 <ul class="rehber-liste" style="list-style:none;padding:0">${alfabe}</ul></section>`;
-  return sayfa({ yol: '/kurlar/', baslik: 'Tüm döviz kurları: TCMB gösterge kurları listesi', aciklama: `TCMB ${tarihYaz(c.son.tarih)} bülteni: dolar, euro, sterlin ve ${c.meta.length} para biriminin alış, satış kurları, günlük değişimi. Ada, koda göre arama ve sıralama.`, govde, js: ['kurlar-sayfa.js'], surum: c.surum, jsonld: [kirintiLd([['/kurlar/', 'Kurlar']], AYAR.origin)] });
+  return sayfa({ yol: '/kurlar/', baslik: 'Tüm döviz kurları: TCMB gösterge kurları listesi', aciklama: `TCMB ${tarihYaz(c.son.tarih)} bülteni: dolar, euro, sterlin ve ${c.meta.length} para biriminin alış, satış kurları, günlük değişimi. Ada, koda göre arama ve sıralama.`, govde, js: ['kurlar-sayfa.js', 'piyasa.js'], surum: c.surum, jsonld: [kirintiLd([['/kurlar/', 'Kurlar']], AYAR.origin)] });
 }
 
 function detaySayfasi(c, m) {
@@ -49,12 +50,13 @@ function detaySayfasi(c, m) {
         <p class="sonuc-buyuk sayi guncel-buyuk" style="margin-top:8px">${kurYaz(r[0])} ₺</p>
         <p class="sonuc-alt guncel-not">${m.birim > 1 ? m.birim + ' ' + m.kod : '1 ' + m.kod} · TCMB döviz alış · bülten ${e(tarihYaz(c.son.tarih, { gun: true }))}</p>
         <div class="zaman-fark guncel-degisim" style="padding:8px 0 0">${degisimHTML(o ? o.g1 : null)}</div>
+        <p data-piyasa="tek" data-kod="${m.kod}" data-birim="${m.birim}" hidden></p>
         <div class="eylemler" style="margin-top:16px"><button class="dugme ikincil kucuk" type="button" data-fav aria-pressed="false"><span class="metin">Favorilere ekle</span></button><a class="dugme ikincil kucuk" href="/uyarilar/?kod=${m.kod}">Kur uyarısı oluştur</a><a class="dugme ikincil kucuk" href="/gecmis-kur/?kod=${m.kod}">Geçmiş tarihli hesap</a></div></div>
     </div>
     <div class="parca" data-ui>
       <div class="parca-baslik"><h2>Alış ve satış</h2><span class="kucuk soluk">Önceki bültenle</span></div>
       <div style="overflow-x:auto"><table class="veri"><thead><tr><th scope="col">Tür</th><th scope="col">Bugün</th><th scope="col" class="gizle-mobil">Önceki</th><th scope="col">Değişim</th></tr></thead><tbody class="guncel-tablo"><tr><th scope="row">Döviz alış</th><td class="sayi">${kurYaz(r[0])}</td><td></td><td></td></tr><tr><th scope="row">Döviz satış</th><td class="sayi">${kurYaz(r[1])}</td><td></td><td></td></tr></tbody></table></div>
-      <p class="parca-ic kucuk soluk" style="padding-top:12px">TCMB günde bir kez bülten yayımlar; bu yüzden "değişim" bir önceki bültene göredir, son 24 saate değil. Efektif (banknot) kurlar her para biriminde yayımlanmaz.</p>
+      <p class="parca-ic kucuk soluk" style="padding-top:12px">TCMB günde bir kez bülten yayımlar; bu yüzden bu tablodaki "değişim" bir önceki bültene göredir. Son 24 saatlik hareket, yukarıdaki saatlik piyasa kurunda görünür. Efektif (banknot) kurlar her para biriminde yayımlanmaz.</p>
     </div>
   </div>
   <div class="parca" data-ui>
@@ -77,7 +79,7 @@ function detaySayfasi(c, m) {
   <section aria-labelledby="dk"><h2 id="dk" style="font-size:var(--t-ust);margin-bottom:12px">Diğer para birimleri</h2><div class="etiket-satir">${diger}<a class="cip" href="/kurlar/">Tümü</a></div></section>
 </div>
 ${reklam('orta')}`;
-  return sayfa({ yol: `/kur/${m.slug}/`, baslik: `${baslik}: bugün, grafik ve geçmiş`, aciklama: `${m.ad} bugün ${kurYaz(r[0])} TL (TCMB, ${tarihYaz(c.son.tarih)}). Alış, satış, 7 günden tüm arşive grafik, en yüksek ve en düşük değer, geçmiş kur tablosu ve tarihli hesaplama.`, govde, js: ['detay-sayfa.js'], surum: c.surum, jsonld: [kirintiLd([['/kurlar/', 'Kurlar'], [`/kur/${m.slug}/`, m.ad]], AYAR.origin)] });
+  return sayfa({ yol: `/kur/${m.slug}/`, baslik: `${baslik}: bugün, grafik ve geçmiş`, aciklama: `${m.ad} bugün ${kurYaz(r[0])} TL (TCMB, ${tarihYaz(c.son.tarih)}). Alış, satış, 7 günden tüm arşive grafik, en yüksek ve en düşük değer, geçmiş kur tablosu ve tarihli hesaplama.`, govde, js: ['detay-sayfa.js', 'piyasa.js'], surum: c.surum, jsonld: [kirintiLd([['/kurlar/', 'Kurlar'], [`/kur/${m.slug}/`, m.ad]], AYAR.origin)] });
 }
 
 export async function uret(c, ekle) {

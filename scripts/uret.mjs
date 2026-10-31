@@ -16,7 +16,7 @@ if (yayin && son.ornek) { console.error('DURDU: Arşivde ÖRNEK veri var. Gerçe
 // Varlık sürümü: css/js içeriğinden; değişince önbellek geçersiz olur.
 async function surumHesapla() {
   const h = createHash('sha1');
-  for (const d of ['doviz.css', 'js/app.js', 'js/hesap.js', 'js/veri.js', 'js/ui.js']) h.update(await readFile(path.join(KOK, 'public/assets', d)));
+  for (const d of ['doviz.css', 'js/app.js', 'js/hesap.js', 'js/veri.js', 'js/ui.js', 'js/piyasa.js']) h.update(await readFile(path.join(KOK, 'public/assets', d)));
   return h.digest('hex').slice(0, 8);
 }
 const surum = await surumHesapla();
@@ -64,7 +64,7 @@ await writeFile(path.join(cikti, 'robots.txt'), `User-agent: *\nAllow: /\nDisall
   const bolum = (ad, yollar) => { const l = yollar.map(y => { const b = baslikAl(y); return b ? `- [${b}](${AYAR.origin}${y})` : null; }).filter(Boolean); return l.length ? `## ${ad}\n\n${l.join('\n')}\n` : ''; };
   const kurYollari = sayfalar.filter(s => /^\/kur\/[^/]+\/$/.test(s.yol)).map(s => s.yol);
   const rehber = sayfalar.filter(s => /^\/rehber\/[^/]+\/$/.test(s.yol)).map(s => s.yol);
-  const metin = `# Forex\n\n> Forex, T.C. Merkez Bankası gösterge kurlarıyla güncel ve geçmiş tarihli döviz kuru bilgisi, para birimi çevirici, grafik ve karşılaştırma araçları sunan ücretsiz bir sitedir. FF-App Labs tarafından hazırlanır. Alım satım yapmaz, yatırım tavsiyesi vermez.\n\nVeriler TCMB'nin günlük bülteninden gelir; hafta sonu ve resmî tatillerde son iş gününün bülteni geçerlidir. Kurlar anlık piyasa fiyatı değildir.\n\n` +
+  const metin = `# Forex\n\n> Forex, T.C. Merkez Bankası gösterge kurlarıyla güncel ve geçmiş tarihli döviz kuru bilgisi, para birimi çevirici, grafik ve karşılaştırma araçları sunan ücretsiz bir sitedir. FF-App Labs tarafından hazırlanır. Alım satım yapmaz, yatırım tavsiyesi vermez.\n\nVeriler TCMB'nin günlük bülteninden gelir; hafta sonu ve resmî tatillerde son iş gününün bülteni geçerlidir. Hesaplayıcılardaki kurlar anlık piyasa fiyatı değildir. Ayrıca ana sayfa, kurlar ve kur sayfalarında saatte bir güncellenen piyasa ortalaması (Open Exchange Rates) ayrı bir panelde, TCMB kurundan ayrı etiketle gösterilir.\n\n` +
     bolum('Araçlar', ['/', '/cevirici/', '/karsilastir/', '/tarihe-gore-kur/', '/gecmis-kur/', '/kurlar/', '/takip/', '/uyarilar/']) + '\n' +
     bolum('Para birimi kur sayfaları', kurYollari) + '\n' +
     bolum('Rehber', ['/rehber/', ...rehber]) + '\n' +
