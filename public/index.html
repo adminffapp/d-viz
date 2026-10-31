@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Forex: geçmiş tarihli kur, çevirici, grafik ve karşılaştırma</title>
-<meta name="description" content="TCMB gösterge kurlarıyla bir tarihteki kuru bulun, tutarın o günkü ve bugünkü TL değerini hesaplayın; döviz çevirici, grafik, karşılaştırma ve kur uyarısı. Üyelik gerekmez.">
+<meta name="description" content="TCMB kurlarıyla geçmiş tarihli kur ve TL değeri hesaplayın; saatte bir güncellenen piyasa kurları, döviz çevirici, grafik, karşılaştırma ve kur uyarısı. Üyelik gerekmez.">
 <link rel="canonical" href="https://forex.ffapplabs.com/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="theme-color" content="#06141B">
 <meta property="og:type" content="website"><meta property="og:locale" content="tr_TR">
 <meta property="og:site_name" content="Forex"><meta property="og:title" content="Forex: geçmiş tarihli kur, çevirici, grafik ve karşılaştırma">
-<meta property="og:description" content="TCMB gösterge kurlarıyla bir tarihteki kuru bulun, tutarın o günkü ve bugünkü TL değerini hesaplayın; döviz çevirici, grafik, karşılaştırma ve kur uyarısı. Üyelik gerekmez."><meta property="og:url" content="https://forex.ffapplabs.com/">
+<meta property="og:description" content="TCMB kurlarıyla geçmiş tarihli kur ve TL değeri hesaplayın; saatte bir güncellenen piyasa kurları, döviz çevirici, grafik, karşılaştırma ve kur uyarısı. Üyelik gerekmez."><meta property="og:url" content="https://forex.ffapplabs.com/">
 <meta property="og:image" content="https://forex.ffapplabs.com/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -18,7 +18,7 @@
 <link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/work-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/doviz.css?v=c89deef6">
+<link rel="stylesheet" href="/assets/doviz.css?v=a2342541">
 <script>
 (function(){var d=document.documentElement;d.classList.remove('js-yok');try{var t=JSON.parse(localStorage.getItem('ffd:tema'));if(t==='acik'||t==='koyu')d.setAttribute('data-tema',t)}catch(e){}})();
 </script>
@@ -90,7 +90,7 @@
         </div>
         </div>
         </div>
-        <p class="hero-not">Kaynak: Türkiye Cumhuriyet Merkez Bankası. Kurlar hafta içi her gün 15:30'dan sonra yayımlanır; hafta sonu ve tatilde bir önceki bülten geçerlidir.</p>
+        <p class="hero-not">Kaynak: Türkiye Cumhuriyet Merkez Bankası. Bülten hafta içi her gün 15:30'dan sonra yayımlanır; hafta sonu ve tatilde bir önceki bülten geçerlidir. Gün içindeki hareket için aşağıdaki saatlik piyasa kurlarına bakın.</p>
         </div>
        </div>
       </div>
@@ -98,6 +98,7 @@
   </div>
   <noscript><div class="kap"><p class="not-kutu" style="margin-top:16px">Hesaplayıcı JavaScript gerektirir. Aşağıdaki tablo ve sayfalar yine de çalışır.</p></div></noscript>
 </section>
+<section class="kap" data-piyasa="liste" aria-labelledby="piyasa-b" style="padding-block:24px" hidden></section>
 
 <section class="blok sag" aria-labelledby="b0">
   <div class="kap"><div class="blok-grid">
@@ -190,7 +191,8 @@
     <div class="alt-telif">© <span id="yil">2026</span> FF-App Labs. Tüm hakları saklıdır.</div>
   </div>
 </div></footer>
-<script type="module" src="/assets/js/app.js?v=c89deef6"></script>
-<script type="module" src="/assets/js/ana.js?v=c89deef6"></script>
+<script type="module" src="/assets/js/app.js?v=a2342541"></script>
+<script type="module" src="/assets/js/ana.js?v=a2342541"></script>
+<script type="module" src="/assets/js/piyasa.js?v=a2342541"></script>
 </body>
 </html>

@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Döviz çevirici: TL, dolar, euro ve 20 para birimi | Forex</title>
-<meta name="description" content="TCMB gösterge kurlarıyla herhangi bir para biriminden diğerine çevirin. Çift yönlü, komisyonlu net tutar, çapraz kur, aynı anda birden fazla birim. Üyelik gerekmez.">
+<meta name="description" content="Saatlik piyasa kuru ya da TCMB gösterge kuruyla para birimleri arasında çeviri. Çift yönlü, komisyonlu net tutar, çapraz kur, aynı anda birden fazla birim. Üyelik gerekmez.">
 <link rel="canonical" href="https://forex.ffapplabs.com/cevirici/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="theme-color" content="#06141B">
 <meta property="og:type" content="website"><meta property="og:locale" content="tr_TR">
 <meta property="og:site_name" content="Forex"><meta property="og:title" content="Döviz çevirici: TL, dolar, euro ve 20 para birimi | Forex">
-<meta property="og:description" content="TCMB gösterge kurlarıyla herhangi bir para biriminden diğerine çevirin. Çift yönlü, komisyonlu net tutar, çapraz kur, aynı anda birden fazla birim. Üyelik gerekmez."><meta property="og:url" content="https://forex.ffapplabs.com/cevirici/">
+<meta property="og:description" content="Saatlik piyasa kuru ya da TCMB gösterge kuruyla para birimleri arasında çeviri. Çift yönlü, komisyonlu net tutar, çapraz kur, aynı anda birden fazla birim. Üyelik gerekmez."><meta property="og:url" content="https://forex.ffapplabs.com/cevirici/">
 <meta property="og:image" content="https://forex.ffapplabs.com/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -18,7 +18,7 @@
 <link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/work-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/doviz.css?v=c89deef6">
+<link rel="stylesheet" href="/assets/doviz.css?v=a2342541">
 <script>
 (function(){var d=document.documentElement;d.classList.remove('js-yok');try{var t=JSON.parse(localStorage.getItem('ffd:tema'));if(t==='acik'||t==='koyu')d.setAttribute('data-tema',t)}catch(e){}})();
 </script>
@@ -41,7 +41,7 @@
   </div>
 </header>
 <main id="icerik">
-<div class="kap sayfa-ust"><nav class="kirinti" aria-label="Sayfa yolu"><ol><li><a href="/">Ana sayfa</a></li><li><span aria-current="page">Çevirici</span></li></ol></nav><h1>Döviz çevirici</h1><p class="giris">Herhangi bir para biriminden diğerine; TL, dolar, euro ve 20 para birimi. Sonucu düzenleyerek tersini de hesaplayabilirsiniz.</p></div>
+<div class="kap sayfa-ust"><nav class="kirinti" aria-label="Sayfa yolu"><ol><li><a href="/">Ana sayfa</a></li><li><span aria-current="page">Çevirici</span></li></ol></nav><h1>Döviz çevirici</h1><p class="giris">Herhangi bir para biriminden diğerine; TL, dolar, euro ve 20 para birimi. Saatte bir güncellenen piyasa kuruyla ya da TCMB bülteniyle hesaplayın; sonucu düzenleyerek tersini de bulabilirsiniz.</p></div>
 <div class="kap" style="padding-bottom:64px">
 <div class="arac-izgara" id="cevirici">
   <div class="parca" data-ui>
@@ -49,6 +49,7 @@
     <div class="parca-ic" style="display:grid;gap:14px">
       <div class="alan"><label for="c-tutar">Tutar</label><input class="girdi sayi" id="c-tutar" name="tutar" inputmode="decimal" autocomplete="off" value="1.000"></div>
       <div class="hizli-tutar" role="group" aria-label="Hızlı tutar"><button type="button" data-hizli="10">10</button><button type="button" data-hizli="50">50</button><button type="button" data-hizli="100">100</button><button type="button" data-hizli="500">500</button><button type="button" data-hizli="1000">1.000</button><button type="button" data-hizli="5000">5.000</button></div>
+      <div class="alan"><label for="c-kk">Kur kaynağı</label><select class="girdi" id="c-kk" name="kurkaynak"><option value="piyasa" selected>Saatlik piyasa kuru (şu an)</option><option value="tcmb">TCMB bülteni (resmî, günlük)</option></select></div>
       <div class="cevir-satir">
         <div class="alan"><label for="c-kaynak">Şundan</label><select class="girdi" id="c-kaynak" name="kaynak"></select></div>
         <button class="ikon-dugme degis" type="button" aria-label="Para birimlerini yer değiştir" title="Yer değiştir"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4L3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></svg></button>
@@ -58,12 +59,12 @@
       <p class="hata-metni" role="alert"></p>
       <details><summary style="cursor:pointer;min-height:44px;display:flex;align-items:center">Kur türü, hassasiyet, komisyon</summary>
         <div class="izgara-alan" style="margin-top:12px">
-          <div class="alan"><label for="c-tur">Kur türü</label><select class="girdi" id="c-tur" name="tur"><option value="1">Döviz alış</option><option value="2">Döviz satış</option><option value="3">Efektif alış</option><option value="4">Efektif satış</option></select></div>
+          <div class="alan"><label for="c-tur">Kur türü (TCMB için)</label><select class="girdi" id="c-tur" name="tur"><option value="1">Döviz alış</option><option value="2">Döviz satış</option><option value="3">Efektif alış</option><option value="4">Efektif satış</option></select></div>
           <div class="alan"><label for="c-hane">Ondalık hane</label><select class="girdi" id="c-hane" name="hane"><option value="0">0</option><option value="2" selected>2</option><option value="4">4</option><option value="6">6</option></select></div>
           <div class="alan"><label for="c-kom">Komisyon / kur farkı (%)</label><input class="girdi sayi" id="c-kom" name="komisyon" inputmode="decimal" placeholder="0"></div>
           <div class="alan"><label for="c-ucret">Sabit ücret (hedef birimde)</label><input class="girdi sayi" id="c-ucret" name="ucret" inputmode="decimal" placeholder="0"></div>
         </div>
-        <p class="kucuk soluk" style="margin-top:10px">Komisyon, bankanızın ya da değiş tokuş noktasının TCMB kuruna eklediği farkı yansıtmak içindir. Gerçek işlem kuru için kurumunuza danışın.</p>
+        <p class="kucuk soluk" style="margin-top:10px">Komisyon, bankanızın ya da değiş tokuş noktasının bu kura eklediği farkı yansıtmak içindir. Saatlik piyasa kurunda alış/satış ayrımı yoktur; kur türü yalnızca TCMB bülteninde kullanılır. Gerçek işlem kuru için kurumunuza danışın.</p>
       </details>
       <p class="tur-uyari not-kutu" style="display:none"></p>
     </div>
@@ -113,7 +114,7 @@
     <div class="alt-telif">© <span id="yil">2026</span> FF-App Labs. Tüm hakları saklıdır.</div>
   </div>
 </div></footer>
-<script type="module" src="/assets/js/app.js?v=c89deef6"></script>
-<script type="module" src="/assets/js/cevirici-sayfa.js?v=c89deef6"></script>
+<script type="module" src="/assets/js/app.js?v=a2342541"></script>
+<script type="module" src="/assets/js/cevirici-sayfa.js?v=a2342541"></script>
 </body>
 </html>

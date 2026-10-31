@@ -18,7 +18,7 @@
 <link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/work-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/doviz.css?v=c89deef6">
+<link rel="stylesheet" href="/assets/doviz.css?v=a2342541">
 <script>
 (function(){var d=document.documentElement;d.classList.remove('js-yok');try{var t=JSON.parse(localStorage.getItem('ffd:tema'));if(t==='acik'||t==='koyu')d.setAttribute('data-tema',t)}catch(e){}})();
 </script>
@@ -41,10 +41,11 @@
 </header>
 <main id="icerik">
 <div class="kap sayfa-ust"><nav class="kirinti" aria-label="Sayfa yolu"><ol><li><a href="/">Ana sayfa</a></li><li><span aria-current="page">Veri kaynağı ve güncelleme</span></li></ol></nav><h1>Veri kaynağı ve güncelleme</h1></div><div class="kap" style="padding-bottom:56px"><article class="metin"><h2>Kaynak</h2><p>Kurlar, T.C. Merkez Bankası'nın <a href="https://www.tcmb.gov.tr/wps/wcm/connect/TR/TCMB+TR/Main+Menu/Istatistikler/Doviz+Kurlari/Gosterge+Niteligindeki+Merkez+Bankasi+Kurlari" rel="noopener">gösterge niteliğindeki döviz kurları</a> bülteninden alınır. Bunlar resmî göstergelerdir; kurumların işlem kurları değildir.</p>
-<h2>Güncelleme</h2><p>Bülten iş günlerinde yayımlanır. Site, bülten sonrası günde bir kez otomatik güncellenir. Sayfaların üstünde son bültenin tarihi gösterilir. Kaynak okunamadığında eski veri "güncel" diye sunulmaz; sayfada uyarı çıkar.</p>
+<h2>Güncelleme</h2><p>Bülten iş günlerinde yayımlanır. Site, bülten sonrası günde bir kez otomatik güncellenir; saatlik piyasa kurları ise piyasa açıkken saatte bir yenilenir. Sayfaların üstünde son bültenin tarihi gösterilir. Kaynak okunamadığında eski veri "güncel" diye sunulmaz; sayfada uyarı çıkar.</p>
+<h2 id="saatlik">Saatlik piyasa kurları</h2><p>Ana sayfa, kurlar ve kur sayfalarındaki "Saatlik piyasa kurları" paneli, çevirici, "kaç TL" sayfalarındaki "şu an" tutarı ve kur uyarıları, <a href="https://openexchangerates.org" rel="noopener">Open Exchange Rates</a> verisinden saatte bir hesaplanan piyasa ortalamasıdır. TL karşılıkları dolar çapraz kuru üzerinden bulunur. Bu değerler TCMB resmî gösterge kuru değildir, bankaların ya da döviz bürolarının işlem kuru da değildir; değişim son 24 saate göredir. Piyasa hafta sonu kapalıyken son değer gösterilir ve kapalı olduğu yazılır. Kaynak 3 saatten uzun süre okunamazsa panel bunu açıkça belirtir. Çeviricide istenirse TCMB bülteni seçilebilir. Geçmiş tarihli hesaplar, grafikler, karşılaştırma ve takip listesi TCMB bültenini kullanır. Saatlik veri alınamazsa çevirici ve uyarılar TCMB bültenine geçer ve bunu belirtir.</p>
 <h2>Eksik günler</h2><p>Hafta sonu ve resmî tatillerde bülten yoktur. Bu günler arşivde boş bırakılır; hesaplarda önceki son bülten kullanılır ve nedeni yazılır. Ayrıntı: <a href="/rehber/hafta-sonu-ve-tatil-kurlari/">hafta sonu ve tatil kurları</a>.</p>
 <h2>Değerler ve yuvarlama</h2><p>Kurlar yayımlandığı gibi saklanır, yeniden hesaplanmaz. Bazı paralar (örn. Japon yeni) 100 birim için yayımlanır; bu sitede birim açıkça yazılır. Gösterim yuvarlaması yalnızca ekranda yapılır; hesaplar tam değerle yürür.</p>
-<h2>Arşiv</h2><p>Her bülten günlük olarak arşivlenir. Arşivin başlangıç tarihi ve eksik günler <a href="/yonetim/">sağlık sayfasında</a> görülebilir.</p>
+<h2>Arşiv</h2><p>Her bülten günlük olarak arşivlenir. Geçmiş kur sayfaları, grafikler ve tarihli hesaplar bu arşivi kullanır.</p>
 <h2>Gösterge kurlar nelerdir?</h2><p>Döviz alış, döviz satış, efektif alış ve efektif satış olarak dört tür yayımlanır. Seçiminiz sitenin her yerinde geçerlidir; varsayılan "döviz alış"tır.</p></article></div>
 </main>
 <div id="capraz-kap"></div>
@@ -62,7 +63,7 @@
     <div class="alt-telif">© <span id="yil">2026</span> FF-App Labs. Tüm hakları saklıdır.</div>
   </div>
 </div></footer>
-<script type="module" src="/assets/js/app.js?v=c89deef6"></script>
+<script type="module" src="/assets/js/app.js?v=a2342541"></script>
 
 </body>
 </html>

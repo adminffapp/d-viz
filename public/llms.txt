@@ -2,7 +2,7 @@
 
 > Forex, T.C. Merkez Bankası gösterge kurlarıyla güncel ve geçmiş tarihli döviz kuru bilgisi, para birimi çevirici, grafik ve karşılaştırma araçları sunan ücretsiz bir sitedir. FF-App Labs tarafından hazırlanır. Alım satım yapmaz, yatırım tavsiyesi vermez.
 
-Veriler TCMB'nin günlük bülteninden gelir; hafta sonu ve resmî tatillerde son iş gününün bülteni geçerlidir. Kurlar anlık piyasa fiyatı değildir.
+Veriler TCMB'nin günlük bülteninden gelir; hafta sonu ve resmî tatillerde son iş gününün bülteni geçerlidir. Hesaplayıcılardaki kurlar anlık piyasa fiyatı değildir. Ayrıca saatte bir güncellenen piyasa ortalaması (Open Exchange Rates) ana sayfa, kurlar ve kur sayfalarında ayrı bir panelde gösterilir; çevirici, "kaç TL" sayfalarındaki "şu an" tutarı ve kur uyarıları da bu kuru kullanır.
 
 ## Araçlar
 

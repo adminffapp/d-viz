@@ -18,7 +18,7 @@
 <link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/work-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/doviz.css?v=c89deef6">
+<link rel="stylesheet" href="/assets/doviz.css?v=a2342541">
 <script>
 (function(){var d=document.documentElement;d.classList.remove('js-yok');try{var t=JSON.parse(localStorage.getItem('ffd:tema'));if(t==='acik'||t==='koyu')d.setAttribute('data-tema',t)}catch(e){}})();
 </script>
@@ -43,9 +43,10 @@
 <div class="kap sayfa-ust"><nav class="kirinti" aria-label="Sayfa yolu"><ol><li><a href="/">Ana sayfa</a></li><li><a href="/kurlar/">Kurlar</a></li><li><a href="/kur/dolar/">Dolar</a></li><li><span aria-current="page">1.000 dolar kaç TL</span></li></ol></nav><h1>1.000 dolar kaç TL?</h1><p class="giris">1.000 USD = 49.774,70 TL (TCMB döviz alış, 30 Ekim 2026 Cuma bülteni).</p></div>
 <div class="kap" style="padding-bottom:48px;display:grid;gap:24px;max-width:var(--sayfa)">
   <div class="parca" data-ui><div class="parca-ic"><p class="sonuc-buyuk sayi">1.000 USD = 49.774,70 ₺</p><p class="sonuc-alt">1 USD = 49,7747 ₺ · Döviz satış kuruyla 49.864,40 ₺ · Kaynak: TCMB gösterge kuru</p>
+    <div data-piyasa="cevir" data-kod="USD" data-tutar="1000" data-yon="doviz-tl" hidden></div>
     <div class="eylemler" style="margin-top:16px"><a class="dugme" href="/cevirici/?tutar=1000&kaynak=USD&hedef=TRY">Başka bir tutarla hesapla</a><a class="dugme ikincil" href="/gecmis-kur/?tutar=1000&kod=USD">Geçmiş tarihli hesap</a><a class="dugme ikincil" href="/kur/dolar/">Dolar kuru ve grafik</a></div></div></div>
-  <div class="metin"><p>Tutar, TCMB'nin her iş günü yayımladığı gösterge niteliğindeki döviz alış kuruyla çarpılarak bulunur. Bankalar ve döviz büroları kendi alış ve satış kurlarını uyguladığı için elinize geçecek tutar farklı olabilir; komisyonlu net tutarı <a href="/cevirici/?tutar=1000&kaynak=USD&hedef=TRY">çeviricide</a> hesaplayabilirsiniz.</p></div>
-  <div class="parca" data-ui><div class="parca-baslik"><h2>Diğer tutarlar</h2></div><div style="max-height:420px;overflow:auto"><table class="veri"><thead><tr><th>Tutar</th><th>TL karşılığı</th></tr></thead><tbody><tr><td><a href="/cevir/1-dolar-kac-tl/">1 dolar</a></td><td class="sayi">49,77 ₺</td></tr><tr><td><a href="/cevir/5-dolar-kac-tl/">5 dolar</a></td><td class="sayi">248,87 ₺</td></tr><tr><td><a href="/cevir/10-dolar-kac-tl/">10 dolar</a></td><td class="sayi">497,75 ₺</td></tr><tr><td><a href="/cevir/20-dolar-kac-tl/">20 dolar</a></td><td class="sayi">995,49 ₺</td></tr><tr><td><a href="/cevir/50-dolar-kac-tl/">50 dolar</a></td><td class="sayi">2.488,74 ₺</td></tr><tr><td><a href="/cevir/100-dolar-kac-tl/">100 dolar</a></td><td class="sayi">4.977,47 ₺</td></tr><tr><td><a href="/cevir/250-dolar-kac-tl/">250 dolar</a></td><td class="sayi">12.443,68 ₺</td></tr><tr><td><a href="/cevir/500-dolar-kac-tl/">500 dolar</a></td><td class="sayi">24.887,35 ₺</td></tr><tr><td><a href="/cevir/5000-dolar-kac-tl/">5.000 dolar</a></td><td class="sayi">248.873,50 ₺</td></tr><tr><td><a href="/cevir/10000-dolar-kac-tl/">10.000 dolar</a></td><td class="sayi">497.747,00 ₺</td></tr></tbody></table></div></div>
+  <div class="metin"><p>Üstteki büyük tutar, TCMB'nin her iş günü yayımladığı gösterge niteliğindeki döviz alış kuruyla hesaplanır. Altındaki "şu an" tutarı ise saatte bir güncellenen piyasa ortalamasıyla hesaplanır; gün içindeki değişimi gösterir. Bankalar ve döviz büroları kendi alış ve satış kurlarını uyguladığı için elinize geçecek tutar farklı olabilir; komisyonlu net tutarı <a href="/cevirici/?tutar=1000&kaynak=USD&hedef=TRY">çeviricide</a> hesaplayabilirsiniz.</p></div>
+  <div class="parca" data-ui><div class="parca-baslik"><h2>Diğer tutarlar</h2></div><div style="max-height:420px;overflow:auto"><table class="veri" data-pz-tablo data-kod="USD" data-yon="doviz-tl"><thead><tr><th>Tutar</th><th>TCMB ile</th><th data-pz-baslik hidden>Şu an (saatlik)</th></tr></thead><tbody><tr><td><a href="/cevir/1-dolar-kac-tl/">1 dolar</a></td><td class="sayi">49,77 ₺</td><td class="sayi" data-pz-tutar="1" hidden></td></tr><tr><td><a href="/cevir/5-dolar-kac-tl/">5 dolar</a></td><td class="sayi">248,87 ₺</td><td class="sayi" data-pz-tutar="5" hidden></td></tr><tr><td><a href="/cevir/10-dolar-kac-tl/">10 dolar</a></td><td class="sayi">497,75 ₺</td><td class="sayi" data-pz-tutar="10" hidden></td></tr><tr><td><a href="/cevir/20-dolar-kac-tl/">20 dolar</a></td><td class="sayi">995,49 ₺</td><td class="sayi" data-pz-tutar="20" hidden></td></tr><tr><td><a href="/cevir/50-dolar-kac-tl/">50 dolar</a></td><td class="sayi">2.488,74 ₺</td><td class="sayi" data-pz-tutar="50" hidden></td></tr><tr><td><a href="/cevir/100-dolar-kac-tl/">100 dolar</a></td><td class="sayi">4.977,47 ₺</td><td class="sayi" data-pz-tutar="100" hidden></td></tr><tr><td><a href="/cevir/250-dolar-kac-tl/">250 dolar</a></td><td class="sayi">12.443,68 ₺</td><td class="sayi" data-pz-tutar="250" hidden></td></tr><tr><td><a href="/cevir/500-dolar-kac-tl/">500 dolar</a></td><td class="sayi">24.887,35 ₺</td><td class="sayi" data-pz-tutar="500" hidden></td></tr><tr><td><a href="/cevir/5000-dolar-kac-tl/">5.000 dolar</a></td><td class="sayi">248.873,50 ₺</td><td class="sayi" data-pz-tutar="5000" hidden></td></tr><tr><td><a href="/cevir/10000-dolar-kac-tl/">10.000 dolar</a></td><td class="sayi">497.747,00 ₺</td><td class="sayi" data-pz-tutar="10000" hidden></td></tr></tbody></table></div></div>
 </div><div class="kap"><div class="reklam" data-yuva="orta" aria-label="Reklam alanı"></div></div>
 </main>
 <div id="capraz-kap"></div>
@@ -63,7 +64,7 @@
     <div class="alt-telif">© <span id="yil">2026</span> FF-App Labs. Tüm hakları saklıdır.</div>
   </div>
 </div></footer>
-<script type="module" src="/assets/js/app.js?v=c89deef6"></script>
-
+<script type="module" src="/assets/js/app.js?v=a2342541"></script>
+<script type="module" src="/assets/js/piyasa.js?v=a2342541"></script>
 </body>
 </html>
