@@ -16,6 +16,7 @@ export default async function handler(req, res) {
   const tur = g.tur === 'yuzde' ? 'yuzde' : 'hedef';
   const yon = ['ustu', 'altina', 'ikisi'].includes(g.yon) ? g.yon : 'ustu';
   const deger = sayi(g.deger), baz = sayi(g.baz);
+  const kaynak = g.kaynak === 'piyasa' ? 'piyasa' : 'tcmb'; // yüzde uyarısının bazı hangi kurla alındı
   if (!epostaGecerli(eposta)) return json(res, 400, { hata: 'eposta', mesaj: 'E-posta adresi geçerli görünmüyor.' });
   if (!HEPSI_KODLAR.includes(kod)) return json(res, 400, { hata: 'kod', mesaj: 'Para birimi tanınmadı.' });
   if (!Number.isFinite(deger) || deger <= 0 || deger > 1e9) return json(res, 400, { hata: 'deger', mesaj: 'Hedef değer geçerli değil.' });
@@ -28,7 +29,7 @@ export default async function handler(req, res) {
     const mevcut = Number((await komut(['GET', eKey])) || 0);
     if (mevcut >= 5) return json(res, 429, { hata: 'limit', mesaj: 'Bir e-posta adresi için en fazla 5 aktif uyarı tanımlanabilir.' });
     const id = rastgele(8), onayToken = rastgele(16), cikisToken = rastgele(16);
-    const kayit = { id, eposta, kod, tur, yon, deger, baz: tur === 'yuzde' ? baz : null, durum: 'bekliyor', onayToken, cikisToken, olusturma: new Date().toISOString() };
+    const kayit = { id, eposta, kod, tur, yon, deger, baz: tur === 'yuzde' ? baz : null, kaynak, durum: 'bekliyor', onayToken, cikisToken, olusturma: new Date().toISOString() };
     await komut(['SET', kayitAnahtar(id), JSON.stringify(kayit), 'EX', SURE_GUN * 86400]);
     await komut(['SADD', 'uyarilar', id]);
     await komut(['INCR', eKey]); await komut(['EXPIRE', eKey, SURE_GUN * 86400]);

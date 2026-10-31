@@ -1,24 +1,19 @@
-// Saatlik piyasa kuru katmanı. /data/saatlik.json'u okur (GitHub Actions saatte bir yazar).
-// Bilerek bağımsız: başka modülden içe aktarma yapmaz, böylece tarayıcı önbelleğindeki eski modüllerle çakışmaz.
+// Saatlik piyasa kuru gösterimi. Veri: saatlik-veri.js (/data/saatlik.json).
 // Sayfadaki yer tutucular:
-//   [data-piyasa="liste"]                     → popüler kurlar paneli
-//   [data-piyasa="tek"][data-kod][data-birim] → tek para biriminin saatlik değeri (kur detay sayfası)
+//   [data-piyasa="liste"]                                        → popüler kurlar paneli
+//   [data-piyasa="tek"][data-kod][data-birim]                    → tek para biriminin saatlik değeri (kur sayfası)
+//   [data-piyasa="cevir"][data-kod][data-tutar][data-yon]        → "50 dolar kaç TL" sonucu (yon: doviz-tl | tl-doviz)
+//   [data-pz-tablo][data-kod][data-yon] içindeki [data-pz-tutar] → "Diğer tutarlar" tablosunun saatlik sütunu
+import { saatlikYukle, durum, kullanilabilir } from './saatlik-veri.js';
+
 const ADLAR = { USD: 'Dolar', EUR: 'Euro', GBP: 'Sterlin', CHF: 'İsviçre frangı', JPY: 'Japon yeni', CAD: 'Kanada doları', AUD: 'Avustralya doları', SAR: 'Suudi riyali', AED: 'BAE dirhemi', CNY: 'Çin yuanı' };
 const BIRIM = { JPY: 100 };
-const BAYAT_SAAT = 3;
 const YENILE_DK = 10;
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const kur = v => v == null ? '–' : v.toLocaleString('tr-TR', v >= 1 ? { minimumFractionDigits: 4, maximumFractionDigits: 4 } : { maximumSignificantDigits: 5 });
-const IST = { timeZone: 'Europe/Istanbul' };
-const gunAnahtar = d => new Intl.DateTimeFormat('en-CA', IST).format(d);
-const saat = iso => {
-  const d = new Date(iso), s = new Intl.DateTimeFormat('tr-TR', { ...IST, hour: '2-digit', minute: '2-digit' }).format(d);
-  if (gunAnahtar(d) === gunAnahtar(new Date())) return 'bugün ' + s;
-  if (gunAnahtar(d) === gunAnahtar(new Date(Date.now() - 864e5))) return 'dün ' + s;
-  return new Intl.DateTimeFormat('tr-TR', { ...IST, day: 'numeric', month: 'short' }).format(d) + ' ' + s;
-};
-const kapali = (t = new Date()) => { const g = t.getUTCDay(), s = t.getUTCHours(); return g === 6 || (g === 0 && s < 21) || (g === 5 && s >= 22); };
+const para = v => v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const bin = n => Number(n).toLocaleString('tr-TR');
 
 function degisim(p) {
   if (p == null) return '<span class="degisim sabit sayi">–</span>';
@@ -36,13 +31,6 @@ function cizgi(dizi) {
   const yol = d.map((v, i) => `${i ? 'L' : 'M'}${(1 + (i / (d.length - 1)) * 62).toFixed(1)},${(18 - ((v - min) / a) * 16).toFixed(1)}`).join('');
   const renk = d.at(-1) > d[0] ? 'var(--yuk)' : d.at(-1) < d[0] ? 'var(--dus)' : 'var(--soluk)';
   return `<svg class="pz-cizgi" viewBox="0 0 64 20" aria-hidden="true"><path d="${yol}" style="stroke:${renk}"/></svg>`;
-}
-/** Tazelik durumu: kaynak kesilirse eski değer "güncel" gibi gösterilmez. */
-function durum(j) {
-  const yas = (Date.now() - Date.parse(j.zaman)) / 3600e3;
-  if (kapali()) return { sinif: 'kapali', metin: `Piyasa kapalı · son değer ${saat(j.zaman)}` };
-  if (yas > BAYAT_SAAT) return { sinif: 'bayat', metin: `Son ${Math.floor(yas)} saattir güncellenemedi · son değer ${saat(j.zaman)}` };
-  return { sinif: 'taze', metin: `Güncellendi ${saat(j.zaman)}` };
 }
 
 function stilEkle() {
@@ -62,7 +50,10 @@ function stilEkle() {
 .pz-durum.taze::before{background:var(--yuk)}
 .pz-durum.bayat{color:var(--uyari)}.pz-durum.bayat::before{background:var(--uyari)}
 .pz-not{padding:12px 18px;font-size:var(--t-kucuk);color:var(--soluk);border-top:1px solid var(--cizgi)}
-.pz-tek{margin-top:10px;padding-top:10px;border-top:1px dashed var(--cizgi);display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}`;
+.pz-tek{margin-top:10px;padding-top:10px;border-top:1px dashed var(--cizgi);display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}
+.pz-cevir{margin-top:14px;padding-top:14px;border-top:1px dashed var(--cizgi)}
+.pz-cevir .pz-buyuk{font-size:clamp(1.5rem,1.2rem + 1.4vw,2.25rem);font-weight:600;line-height:1.15;margin:4px 0 6px}
+.pz-cevir .pz-alt{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;font-size:var(--t-kucuk);color:var(--soluk)}`;
   document.head.appendChild(s);
 }
 
@@ -75,7 +66,7 @@ function listeCiz(kap, j) {
   kap.innerHTML = `<div class="parca">
 <div class="parca-baslik"><h2 id="piyasa-b" style="font-size:var(--t-ust)">Saatlik piyasa kurları</h2><span class="pz-durum ${d.sinif}" role="status">${esc(d.metin)}</span></div>
 <ul class="pz-izgara" aria-label="Saatlik piyasa kurları">${ogeler}</ul>
-<p class="pz-not">Saatte bir güncellenen piyasa ortalamasıdır (kaynak: ${esc(j.kaynak)}); değişim son 24 saate göredir. TCMB resmî gösterge kuru ve banka işlem kuru değildir. Hesaplayıcılar TCMB bültenini kullanır. <a href="/veri-kaynagi/#saatlik">Ayrıntı</a></p>
+<p class="pz-not">Saatte bir güncellenen piyasa ortalamasıdır (kaynak: ${esc(j.kaynak)}); değişim son 24 saate göredir. TCMB resmî gösterge kuru ve banka işlem kuru değildir. Çevirici ve kur uyarıları bu kuru kullanır; geçmiş tarihli hesaplar ve grafikler TCMB bültenini kullanır. <a href="/veri-kaynagi/#saatlik">Ayrıntı</a></p>
 </div>`;
   kap.hidden = false;
 }
@@ -90,22 +81,43 @@ function tekCiz(kap, j) {
   kap.hidden = false;
 }
 
+function cevirCiz(kap, j) {
+  const k = kap.dataset.kod, n = Number(kap.dataset.tutar), tl = j.kurlar[k];
+  if (tl == null || !Number.isFinite(n) || !kullanilabilir(j)) { kap.hidden = true; return; }
+  const d = durum(j);
+  const dovizTl = kap.dataset.yon !== 'tl-doviz';
+  const sonuc = dovizTl ? `${bin(n)} ${k} = ${para(n * tl)} ₺` : `${bin(n)} ₺ = ${para(n / tl)} ${k}`;
+  kap.classList.add('pz-cevir');
+  kap.innerHTML = `<span class="kucuk soluk">Şu an, saatlik piyasa kuruyla</span><p class="pz-buyuk sayi">${sonuc}</p><span class="pz-alt"><span class="sayi">1 ${k} = ${kur(tl)} ₺</span>${degisim(j.g24?.[k])}<span class="pz-durum ${d.sinif}">${esc(d.metin)}</span><a href="/veri-kaynagi/#saatlik">TCMB kurundan farkı</a></span>`;
+  kap.hidden = false;
+}
+
+function tabloCiz(tablo, j) {
+  const k = tablo.dataset.kod, tl = j.kurlar[k];
+  if (tl == null || !kullanilabilir(j)) { tablo.querySelectorAll('[data-pz-baslik],[data-pz-tutar]').forEach(h => { h.hidden = true; }); return; }
+  const dovizTl = tablo.dataset.yon !== 'tl-doviz';
+  tablo.querySelectorAll('[data-pz-tutar]').forEach(h => {
+    const n = Number(h.dataset.pzTutar);
+    h.textContent = dovizTl ? `${para(n * tl)} ₺` : `${para(n / tl)} ${k}`;
+  });
+  tablo.querySelectorAll('[data-pz-baslik]').forEach(h => { h.hidden = false; });
+  tablo.querySelectorAll('[data-pz-tutar]').forEach(h => { h.hidden = false; });
+}
+
 let sonZaman = null;
-async function yukle() {
+async function yukle(yenile = false) {
   const yerler = document.querySelectorAll('[data-piyasa]');
-  if (!yerler.length) return;
-  let j;
-  try {
-    const r = await fetch('/data/saatlik.json', { cache: 'no-cache' });
-    if (!r.ok) return; // dosya henüz yoksa paneller gizli kalır
-    j = await r.json();
-  } catch { return; }
-  if (!j || !j.kurlar || !j.zaman) return;
-  if (j.zaman === sonZaman && yerler[0].hidden === false) { yerler.forEach(y => { const s = y.querySelector('.pz-durum'); if (s) { const d = durum(j); s.className = 'pz-durum ' + d.sinif; s.textContent = d.metin; } }); return; }
+  const tablolar = document.querySelectorAll('[data-pz-tablo]');
+  if (!yerler.length && !tablolar.length) return;
+  const j = await saatlikYukle({ yenile });
+  if (!j) return; // dosya yoksa yer tutucular gizli kalır
+  if (j.zaman === sonZaman) { yerler.forEach(y => { const s = y.querySelector('.pz-durum'); if (s) { const d = durum(j); s.className = 'pz-durum ' + d.sinif; s.textContent = d.metin; } }); return; }
   sonZaman = j.zaman;
   stilEkle();
-  yerler.forEach(y => (y.dataset.piyasa === 'tek' ? tekCiz : listeCiz)(y, j));
+  const ciz = { liste: listeCiz, tek: tekCiz, cevir: cevirCiz };
+  yerler.forEach(y => (ciz[y.dataset.piyasa] || listeCiz)(y, j));
+  tablolar.forEach(t => tabloCiz(t, j));
 }
 yukle();
-setInterval(() => { if (document.visibilityState === 'visible') yukle(); }, YENILE_DK * 60e3);
-document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') yukle(); });
+setInterval(() => { if (document.visibilityState === 'visible') yukle(true); }, YENILE_DK * 60e3);
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') yukle(true); });

@@ -13,29 +13,31 @@ function dovizTL(c, m, n) {
   const r = c.son.kurlar[m.kod]; const tl = r[0] / m.birim;
   const yol = `/cevir/${n}-${m.slug}-kac-tl/`;
   const deger = n * tl;
-  const komsu = CEVIR_TUTARLAR.filter(x => x !== n).map(x => `<tr><td><a href="/cevir/${x}-${m.slug}-kac-tl/">${bin(x)} ${kucuk(m.kisa)}</a></td><td class="sayi">${sayiYaz(x * tl, 2)} ₺</td></tr>`).join('');
+  const komsu = CEVIR_TUTARLAR.filter(x => x !== n).map(x => `<tr><td><a href="/cevir/${x}-${m.slug}-kac-tl/">${bin(x)} ${kucuk(m.kisa)}</a></td><td class="sayi">${sayiYaz(x * tl, 2)} ₺</td><td class="sayi" data-pz-tutar="${x}" hidden></td></tr>`).join('');
   const govde = `${ustBolum({ kirintiHtml: kirinti(['/kurlar/', 'Kurlar'], [`/kur/${m.slug}/`, m.kisa], [null, `${bin(n)} ${kucuk(m.kisa)} kaç TL`]), baslik: `${bin(n)} ${kucuk(m.kisa)} kaç TL?`, giris: `${bin(n)} ${m.kod} = ${sayiYaz(deger, 2)} TL (TCMB döviz alış, ${e(tarihYaz(c.son.tarih, { gun: true }))} bülteni).` })}
 <div class="kap" style="padding-bottom:48px;display:grid;gap:24px;max-width:var(--sayfa)">
   <div class="parca" data-ui><div class="parca-ic"><p class="sonuc-buyuk sayi">${bin(n)} ${m.kod} = ${sayiYaz(deger, 2)} ₺</p><p class="sonuc-alt">1 ${m.kod} = ${kurYaz(tl)} ₺ · Döviz satış kuruyla ${sayiYaz(n * c.son.kurlar[m.kod][1] / m.birim, 2)} ₺ · Kaynak: TCMB gösterge kuru</p>
+    <div data-piyasa="cevir" data-kod="${m.kod}" data-tutar="${n}" data-yon="doviz-tl" hidden></div>
     <div class="eylemler" style="margin-top:16px"><a class="dugme" href="/cevirici/?tutar=${n}&kaynak=${m.kod}&hedef=TRY">Başka bir tutarla hesapla</a><a class="dugme ikincil" href="/gecmis-kur/?tutar=${n}&kod=${m.kod}">Geçmiş tarihli hesap</a><a class="dugme ikincil" href="/kur/${m.slug}/">${e(m.kisa)} kuru ve grafik</a></div></div></div>
-  <div class="metin"><p>Tutar, TCMB'nin her iş günü yayımladığı gösterge niteliğindeki döviz alış kuruyla çarpılarak bulunur. Bankalar ve döviz büroları kendi alış ve satış kurlarını uyguladığı için elinize geçecek tutar farklı olabilir; komisyonlu net tutarı <a href="/cevirici/?tutar=${n}&kaynak=${m.kod}&hedef=TRY">çeviricide</a> hesaplayabilirsiniz.</p></div>
-  <div class="parca" data-ui><div class="parca-baslik"><h2>Diğer tutarlar</h2></div><div style="max-height:420px;overflow:auto"><table class="veri"><thead><tr><th>Tutar</th><th>TL karşılığı</th></tr></thead><tbody>${komsu}</tbody></table></div></div>
+  <div class="metin"><p>Üstteki büyük tutar, TCMB'nin her iş günü yayımladığı gösterge niteliğindeki döviz alış kuruyla hesaplanır. Altındaki "şu an" tutarı ise saatte bir güncellenen piyasa ortalamasıyla hesaplanır; gün içindeki değişimi gösterir. Bankalar ve döviz büroları kendi alış ve satış kurlarını uyguladığı için elinize geçecek tutar farklı olabilir; komisyonlu net tutarı <a href="/cevirici/?tutar=${n}&kaynak=${m.kod}&hedef=TRY">çeviricide</a> hesaplayabilirsiniz.</p></div>
+  <div class="parca" data-ui><div class="parca-baslik"><h2>Diğer tutarlar</h2></div><div style="max-height:420px;overflow:auto"><table class="veri" data-pz-tablo data-kod="${m.kod}" data-yon="doviz-tl"><thead><tr><th>Tutar</th><th>TCMB ile</th><th data-pz-baslik hidden>Şu an (saatlik)</th></tr></thead><tbody>${komsu}</tbody></table></div></div>
 </div>${reklam('orta')}`;
-  return sayfa({ yol, baslik: `${bin(n)} ${kucuk(m.kisa)} kaç TL? (${tarihYaz(c.son.tarih)})`, aciklama: `${bin(n)} ${kucuk(m.kisa)} (${m.kod}) bugün ${sayiYaz(deger, 2)} TL eder. TCMB döviz alış kuru ${kurYaz(tl)} TL, ${tarihYaz(c.son.tarih)} bülteni. Diğer tutarlar ve tarihli hesaplama.`, govde, surum: c.surum, jsonld: [kirintiLd([['/kurlar/', 'Kurlar'], [`/kur/${m.slug}/`, m.kisa], [yol, `${bin(n)} ${kucuk(m.kisa)} kaç TL`]], AYAR.origin)] });
+  return sayfa({ yol, baslik: `${bin(n)} ${kucuk(m.kisa)} kaç TL? (${tarihYaz(c.son.tarih)})`, aciklama: `${bin(n)} ${kucuk(m.kisa)} (${m.kod}) bugün ${sayiYaz(deger, 2)} TL eder. TCMB döviz alış kuru ${kurYaz(tl)} TL, ${tarihYaz(c.son.tarih)} bülteni. Diğer tutarlar ve tarihli hesaplama.`, govde, js: ['piyasa.js'], surum: c.surum, jsonld: [kirintiLd([['/kurlar/', 'Kurlar'], [`/kur/${m.slug}/`, m.kisa], [yol, `${bin(n)} ${kucuk(m.kisa)} kaç TL`]], AYAR.origin)] });
 }
 function tlDoviz(c, m, n) {
   const r = c.son.kurlar[m.kod]; const tl = r[0] / m.birim;
   const yol = `/cevir/${n}-tl-kac-${m.slug}/`;
   const deger = n / tl;
-  const komsu = TL_TUTARLAR.filter(x => x !== n).map(x => `<tr><td><a href="/cevir/${x}-tl-kac-${m.slug}/">${bin(x)} TL</a></td><td class="sayi">${sayiYaz(x / tl, 2)} ${m.kod}</td></tr>`).join('');
+  const komsu = TL_TUTARLAR.filter(x => x !== n).map(x => `<tr><td><a href="/cevir/${x}-tl-kac-${m.slug}/">${bin(x)} TL</a></td><td class="sayi">${sayiYaz(x / tl, 2)} ${m.kod}</td><td class="sayi" data-pz-tutar="${x}" hidden></td></tr>`).join('');
   const govde = `${ustBolum({ kirintiHtml: kirinti(['/kurlar/', 'Kurlar'], [`/kur/${m.slug}/`, m.kisa], [null, `${bin(n)} TL kaç ${kucuk(m.kisa)}`]), baslik: `${bin(n)} TL kaç ${kucuk(m.kisa)}?`, giris: `${bin(n)} TL = ${sayiYaz(deger, 2)} ${m.kod} (TCMB döviz alış, ${e(tarihYaz(c.son.tarih, { gun: true }))} bülteni).` })}
 <div class="kap" style="padding-bottom:48px;display:grid;gap:24px">
   <div class="parca" data-ui><div class="parca-ic"><p class="sonuc-buyuk sayi">${bin(n)} ₺ = ${sayiYaz(deger, 2)} ${m.kod}</p><p class="sonuc-alt">1 ${m.kod} = ${kurYaz(tl)} ₺ · Kaynak: TCMB gösterge kuru</p>
+    <div data-piyasa="cevir" data-kod="${m.kod}" data-tutar="${n}" data-yon="tl-doviz" hidden></div>
     <div class="eylemler" style="margin-top:16px"><a class="dugme" href="/cevirici/?tutar=${n}&kaynak=TRY&hedef=${m.kod}">Başka bir tutarla hesapla</a><a class="dugme ikincil" href="/gecmis-kur/?tutar=${n}&kod=${m.kod}&yon=tl">Geçmiş tarihli hesap</a></div></div></div>
-  <div class="metin"><p>TL tutarı, TCMB döviz alış kuruna bölünerek bulunur. Gerçek alım işleminde kuruma göre satış kuru ve komisyon uygulanır; sonuç bu sayfadaki değerden daha az olabilir.</p></div>
-  <div class="parca" data-ui><div class="parca-baslik"><h2>Diğer tutarlar</h2></div><table class="veri"><thead><tr><th>Tutar</th><th>Karşılığı</th></tr></thead><tbody>${komsu}</tbody></table></div>
+  <div class="metin"><p>TL tutarı, TCMB döviz alış kuruna bölünerek bulunur; "şu an" tutarı saatte bir güncellenen piyasa kurunu kullanır. Gerçek alım işleminde kuruma göre satış kuru ve komisyon uygulanır; sonuç bu sayfadaki değerden daha az olabilir.</p></div>
+  <div class="parca" data-ui><div class="parca-baslik"><h2>Diğer tutarlar</h2></div><table class="veri" data-pz-tablo data-kod="${m.kod}" data-yon="tl-doviz"><thead><tr><th>Tutar</th><th>TCMB ile</th><th data-pz-baslik hidden>Şu an (saatlik)</th></tr></thead><tbody>${komsu}</tbody></table></div>
 </div>${reklam('orta')}`;
-  return sayfa({ yol, baslik: `${bin(n)} TL kaç ${kucuk(m.kisa)}? (${tarihYaz(c.son.tarih)})`, aciklama: `${bin(n)} TL bugün ${sayiYaz(deger, 2)} ${m.kod} eder. TCMB döviz alış kuru ${kurYaz(tl)} TL, ${tarihYaz(c.son.tarih)} bülteni.`, govde, surum: c.surum, jsonld: [kirintiLd([['/kurlar/', 'Kurlar'], [`/kur/${m.slug}/`, m.kisa], [yol, `${bin(n)} TL kaç ${kucuk(m.kisa)}`]], AYAR.origin)] });
+  return sayfa({ yol, baslik: `${bin(n)} TL kaç ${kucuk(m.kisa)}? (${tarihYaz(c.son.tarih)})`, aciklama: `${bin(n)} TL bugün ${sayiYaz(deger, 2)} ${m.kod} eder. TCMB döviz alış kuru ${kurYaz(tl)} TL, ${tarihYaz(c.son.tarih)} bülteni.`, govde, js: ['piyasa.js'], surum: c.surum, jsonld: [kirintiLd([['/kurlar/', 'Kurlar'], [`/kur/${m.slug}/`, m.kisa], [yol, `${bin(n)} TL kaç ${kucuk(m.kisa)}`]], AYAR.origin)] });
 }
 
 async function yilSayfasi(c, m, yil) {

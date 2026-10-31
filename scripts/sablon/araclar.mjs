@@ -3,7 +3,7 @@ import { kirinti, ustBolum, kirintiLd, reklam, HIZLI, turSecenek } from './ortak
 import { AYAR } from '../../public/assets/js/ayar.js';
 
 function ceviriciSayfa(c) {
-  const govde = `${ustBolum({ kirintiHtml: kirinti([null, 'Çevirici']), baslik: 'Döviz çevirici', giris: 'Herhangi bir para biriminden diğerine; TL, dolar, euro ve ' + c.meta.length + ' para birimi. Sonucu düzenleyerek tersini de hesaplayabilirsiniz.' })}
+  const govde = `${ustBolum({ kirintiHtml: kirinti([null, 'Çevirici']), baslik: 'Döviz çevirici', giris: 'Herhangi bir para biriminden diğerine; TL, dolar, euro ve ' + c.meta.length + ' para birimi. Saatte bir güncellenen piyasa kuruyla ya da TCMB bülteniyle hesaplayın; sonucu düzenleyerek tersini de bulabilirsiniz.' })}
 <div class="kap" style="padding-bottom:64px">
 <div class="arac-izgara" id="cevirici">
   <div class="parca" data-ui>
@@ -11,6 +11,7 @@ function ceviriciSayfa(c) {
     <div class="parca-ic" style="display:grid;gap:14px">
       <div class="alan"><label for="c-tutar">Tutar</label><input class="girdi sayi" id="c-tutar" name="tutar" inputmode="decimal" autocomplete="off" value="1.000"></div>
       <div class="hizli-tutar" role="group" aria-label="Hızlı tutar">${HIZLI.map(h => `<button type="button" data-hizli="${h}">${h.toLocaleString('tr-TR')}</button>`).join('')}</div>
+      <div class="alan"><label for="c-kk">Kur kaynağı</label><select class="girdi" id="c-kk" name="kurkaynak"><option value="piyasa" selected>Saatlik piyasa kuru (şu an)</option><option value="tcmb">TCMB bülteni (resmî, günlük)</option></select></div>
       <div class="cevir-satir">
         <div class="alan"><label for="c-kaynak">Şundan</label><select class="girdi" id="c-kaynak" name="kaynak"></select></div>
         <button class="ikon-dugme degis" type="button" aria-label="Para birimlerini yer değiştir" title="Yer değiştir"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4L3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></svg></button>
@@ -20,12 +21,12 @@ function ceviriciSayfa(c) {
       <p class="hata-metni" role="alert"></p>
       <details><summary style="cursor:pointer;min-height:44px;display:flex;align-items:center">Kur türü, hassasiyet, komisyon</summary>
         <div class="izgara-alan" style="margin-top:12px">
-          <div class="alan"><label for="c-tur">Kur türü</label><select class="girdi" id="c-tur" name="tur">${turSecenek}</select></div>
+          <div class="alan"><label for="c-tur">Kur türü (TCMB için)</label><select class="girdi" id="c-tur" name="tur">${turSecenek}</select></div>
           <div class="alan"><label for="c-hane">Ondalık hane</label><select class="girdi" id="c-hane" name="hane"><option value="0">0</option><option value="2" selected>2</option><option value="4">4</option><option value="6">6</option></select></div>
           <div class="alan"><label for="c-kom">Komisyon / kur farkı (%)</label><input class="girdi sayi" id="c-kom" name="komisyon" inputmode="decimal" placeholder="0"></div>
           <div class="alan"><label for="c-ucret">Sabit ücret (hedef birimde)</label><input class="girdi sayi" id="c-ucret" name="ucret" inputmode="decimal" placeholder="0"></div>
         </div>
-        <p class="kucuk soluk" style="margin-top:10px">Komisyon, bankanızın ya da değiş tokuş noktasının TCMB kuruna eklediği farkı yansıtmak içindir. Gerçek işlem kuru için kurumunuza danışın.</p>
+        <p class="kucuk soluk" style="margin-top:10px">Komisyon, bankanızın ya da değiş tokuş noktasının bu kura eklediği farkı yansıtmak içindir. Saatlik piyasa kurunda alış/satış ayrımı yoktur; kur türü yalnızca TCMB bülteninde kullanılır. Gerçek işlem kuru için kurumunuza danışın.</p>
       </details>
       <p class="tur-uyari not-kutu" style="display:none"></p>
     </div>
@@ -59,7 +60,7 @@ function ceviriciSayfa(c) {
 </div>
 </div>
 ${reklam('orta')}`;
-  return sayfa({ yol: '/cevirici/', baslik: `Döviz çevirici: TL, dolar, euro ve ${c.meta.length} para birimi`, aciklama: 'TCMB gösterge kurlarıyla herhangi bir para biriminden diğerine çevirin. Çift yönlü, komisyonlu net tutar, çapraz kur, aynı anda birden fazla birim. Üyelik gerekmez.', govde, js: ['cevirici-sayfa.js'], surum: c.surum, jsonld: [kirintiLd([['/cevirici/', 'Çevirici']], AYAR.origin), { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Forex çevirici', url: AYAR.origin + '/cevirici/', applicationCategory: 'FinanceApplication', operatingSystem: 'Web', inLanguage: 'tr', offers: { '@type': 'Offer', price: '0', priceCurrency: 'TRY' } }] });
+  return sayfa({ yol: '/cevirici/', baslik: `Döviz çevirici: TL, dolar, euro ve ${c.meta.length} para birimi`, aciklama: 'Saatlik piyasa kuru ya da TCMB gösterge kuruyla para birimleri arasında çeviri. Çift yönlü, komisyonlu net tutar, çapraz kur, aynı anda birden fazla birim. Üyelik gerekmez.', govde, js: ['cevirici-sayfa.js'], surum: c.surum, jsonld: [kirintiLd([['/cevirici/', 'Çevirici']], AYAR.origin), { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Forex çevirici', url: AYAR.origin + '/cevirici/', applicationCategory: 'FinanceApplication', operatingSystem: 'Web', inLanguage: 'tr', offers: { '@type': 'Offer', price: '0', priceCurrency: 'TRY' } }] });
 }
 
 export async function uret(c, ekle) {

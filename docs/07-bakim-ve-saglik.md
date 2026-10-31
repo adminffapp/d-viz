@@ -4,5 +4,5 @@
 - `npm run saglik`: tüm sayfaları tarar (kırık iç bağlantı, eksik/yinelenen başlık-açıklama, h1, canonical); sonucu `public/data/saglik.json`'a yazar. Action içinde her gün çalışır.
 - Kaynak hatası olursa Action başarısız görünür ve GitHub size e-posta atar; site eski veriyi uyarıyla gösterir.
 - Sağlık metrikleri (Core Web Vitals): Vercel Speed Insights veya PageSpeed Insights ile ayda bir bakın. Yapılan önlemler: tek CSS, kendi barındırdığımız font, 3D madeni para tembel yüklenir ve `prefers-reduced-motion`'da kapanır.
-- Saatlik piyasa işi (`saatlik.yml`) başarısız olursa GitHub e-posta atar. Sık nedenler: `OXR_APP_ID` eksik/yanlış (401), aylık kota doldu (429). Site son başarılı değeri saatiyle gösterir; 3 saati geçince panelde "güncellenemedi" yazar.
+- Saatlik piyasa işi (`saatlik.yml`) başarısız olursa GitHub e-posta atar. Sık nedenler: `OXR_APP_ID` eksik/yanlış (401), aylık kota doldu (429). Site son başarılı değeri saatiyle gösterir; 3 saati geçince panelde "güncellenemedi" yazar; çevirici ve uyarılar bu durumda TCMB bültenine geçer.
 - Sırlar kodda yok; yalnızca ortam değişkenlerinde (`docs/04`).

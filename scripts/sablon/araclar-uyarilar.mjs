@@ -14,7 +14,7 @@ export async function uret(c, ekle) {
       <div class="alan"><label for="u-deger">Hedef kur (₺)</label><input class="girdi sayi" id="u-deger" name="deger" inputmode="decimal" autocomplete="off" placeholder="ör. 45,00"></div>
       <fieldset style="border:0;padding:0;display:grid;gap:8px"><legend class="kucuk soluk" style="margin-bottom:6px">Nasıl haber verelim?</legend>
         <label><input type="checkbox" name="k-tarayici" checked> Tarayıcı bildirimi <span class="kucuk soluk">(yalnızca site açıkken)</span></label>
-        <label><input type="checkbox" name="k-eposta"> E-posta <span class="kucuk soluk">(site kapalıyken de, günde bir kez kontrol)</span></label>
+        <label><input type="checkbox" name="k-eposta"> E-posta <span class="kucuk soluk">(site kapalıyken de, saatte bir kontrol)</span></label>
       </fieldset>
       <div class="ep-alan" hidden style="display:grid;gap:10px"><div class="alan"><label for="u-eposta">E-posta adresi</label><input class="girdi" id="u-eposta" name="eposta" type="email" autocomplete="email" placeholder="ad@ornek.com"></div>
         <input name="web" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0">
@@ -28,7 +28,7 @@ export async function uret(c, ekle) {
   <div style="display:grid;gap:24px;min-width:0;align-content:start">
     <div class="parca" data-ui><div class="parca-baslik"><h2>Aktif uyarılarım</h2></div><div class="parca-ic"><ul class="liste-sade aktif"></ul></div></div>
     <div class="parca" data-ui><div class="parca-baslik"><h2>Tetiklenenler</h2></div><div class="parca-ic"><ul class="liste-sade bitmis"></ul></div></div>
-    <p class="not-kutu bilgi">Tarayıcı bildirimi, siteyi (ya da ana ekrana eklediğiniz uygulamayı) açtığınızda ve veri yenilendiğinde kontrol edilir; site kapalıyken çalışmaz. Kapalıyken haber almak için e-posta seçin. TCMB günde bir bülten yayımladığı için uyarılar da en sık günde bir kez tetiklenir.</p>
+    <p class="not-kutu bilgi">Tarayıcı bildirimi, siteyi (ya da ana ekrana eklediğiniz uygulamayı) açtığınızda ve veri yenilendiğinde kontrol edilir; site kapalıyken çalışmaz. Kapalıyken haber almak için e-posta seçin. Uyarılar saatte bir güncellenen piyasa kuruyla kontrol edilir; piyasa hafta sonu kapalıdır. Saatlik veri alınamazsa TCMB bülteni kullanılır.</p>
   </div></div></div>`;
   ekle('/uyarilar/', sayfa({ yol: '/uyarilar/', baslik: 'Kur uyarısı: hedef kura ulaşınca bildirim', aciklama: 'Dolar, euro ve diğer kurlar için hedef seviye ya da yüzde değişim uyarısı oluşturun. Tarayıcı bildirimi ve çift onaylı e-posta. Üyelik gerekmez.', govde, js: ['uyarilar-sayfa.js'], surum: c.surum, jsonld: [kirintiLd([['/uyarilar/', 'Uyarılar']], AYAR.origin)] }), { oncelik: 0.6 });
 }

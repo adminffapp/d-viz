@@ -16,16 +16,34 @@ concurrency:
 jobs:
   saatlik:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
-      # Bağımlılık gerekmez: betik yalnızca Node'un kendi modüllerini kullanır.
       - name: Piyasa kurunu çek
         env:
           OXR_APP_ID: ${{ secrets.OXR_APP_ID }}
         run: node scripts/saatlik.mjs ${{ inputs.zorla && '--zorla' || '' }}
+      - name: Yeni veri geldi mi?
+        id: degisim
+        run: |
+          if git diff --quiet -- public/data/saatlik.json; then echo "var=hayir" >> "$GITHUB_OUTPUT"; else echo "var=evet" >> "$GITHUB_OUTPUT"; fi
+      # E-posta uyarıları yalnızca yeni piyasa verisi geldiğinde kontrol edilir (firebase-admin için bağımlılık kurulur).
+      - name: Bağımlılıklar
+        if: steps.degisim.outputs.var == 'evet'
+        run: npm ci || npm install
+      - name: Kur uyarılarını gönder
+        if: steps.degisim.outputs.var == 'evet'
+        continue-on-error: true   # uyarı hatası saatlik veriyi kaydetmeyi engellemesin
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+          UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RESEND_FROM: ${{ secrets.RESEND_FROM }}
+          SITE_ORIGIN: https://forex.ffapplabs.com
+        run: npm run uyari
       - name: Değişikliği kaydet
         run: |
           git config user.name "kur-botu"

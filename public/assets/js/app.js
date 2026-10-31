@@ -85,8 +85,8 @@ capraz();
   try {
     const l = depo.oku('alarmlar', []);
     if (!Array.isArray(l) || !l.some(a => a.aktif)) return;
-    const [{ kontrolEt }, { temel }] = await Promise.all([import('./alarm.js'), import('./veri.js')]);
-    const t = await temel(); kontrolEt(t.son, t.birim);
+    const [{ kontrolEt }, { temel }, { saatlikYukle }] = await Promise.all([import('./alarm-v2.js'), import('./veri.js'), import('./saatlik-veri.js')]);
+    const [t, sj] = await Promise.all([temel(), saatlikYukle()]); kontrolEt(t.son, t.birim, sj);
   } catch { /* alarm kontrolü sessizce atlanır */ }
 })();
 

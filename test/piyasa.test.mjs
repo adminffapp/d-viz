@@ -51,3 +51,32 @@ test('anahtar yoksa ve kota dolunca açık hata', async () => {
   const sahte = async () => ({ status: 429, ok: false, json: async () => ({}) });
   await assert.rejects(getir('x', { fetchFn: sahte }), /kotası/);
 });
+
+// --- Tarayıcı/e-posta ortak kuralı: uyarı hangi kurla karşılaştırılır ---
+import { uyariKuru, kullanilabilir } from '../public/assets/js/saatlik-veri.js';
+const SON = { tarih: '2026-10-30', kurlar: { USD: [49.5, 49.6, null, null], JPY: [31.5, 31.7, null, null] } };
+const BIRIM = { USD: { birim: 1 }, JPY: { birim: 100 } };
+const PZT = Date.parse('2026-11-02T10:00:00Z'); // piyasa açık
+const SJ = { zaman: '2026-11-02T09:00:00Z', kurlar: { USD: 50.1, JPY: 0.3172 } };
+
+test('uyarı: taze piyasa verisi varsa piyasa kuru kullanılır', () => {
+  const s = uyariKuru({ kod: 'USD', tur: 'hedef' }, SON, BIRIM, SJ, PZT);
+  assert.deepEqual(s, { kur: 50.1, kaynak: 'piyasa', zaman: SJ.zaman });
+});
+test('uyarı: piyasa verisi bayatsa ya da yoksa TCMB bültenine düşülür', () => {
+  const bayat = uyariKuru({ kod: 'USD', tur: 'hedef' }, SON, BIRIM, SJ, PZT + 4 * 3600e3);
+  assert.equal(bayat.kaynak, 'tcmb'); assert.equal(bayat.kur, 49.5);
+  assert.equal(uyariKuru({ kod: 'USD', tur: 'hedef' }, SON, BIRIM, null, PZT).kaynak, 'tcmb');
+  const jpy = uyariKuru({ kod: 'JPY', tur: 'hedef' }, SON, BIRIM, null, PZT);
+  assert.equal(jpy.kur, 0.315, 'TCMB 100 birimlik kur 1 birime çevrilir');
+});
+test('uyarı: TCMB bazlı eski yüzde uyarısı TCMB ile, piyasa bazlı olan piyasa ile karşılaştırılır', () => {
+  assert.equal(uyariKuru({ kod: 'USD', tur: 'yuzde' }, SON, BIRIM, SJ, PZT).kaynak, 'tcmb');
+  assert.equal(uyariKuru({ kod: 'USD', tur: 'yuzde', kaynak: 'piyasa' }, SON, BIRIM, SJ, PZT).kaynak, 'piyasa');
+});
+test('tazelik: hafta sonu son değer geçerli, hafta içi 3 saat sınırı', () => {
+  const cuma = { zaman: '2026-10-30T21:00:00Z' };
+  assert.equal(kullanilabilir(cuma, Date.parse('2026-10-31T12:00:00Z')), true);   // Cumartesi
+  assert.equal(kullanilabilir(cuma, Date.parse('2026-11-02T10:00:00Z')), false);  // Pazartesi, eski
+  assert.equal(kullanilabilir(null), false);
+});
