@@ -5,6 +5,7 @@ import { arsivYukle } from './veri.js';
 import { grafik } from './grafik.js';
 import { degisimHTML } from './kur-satir.js';
 import { favoriler } from './kisisel.js';
+import { saatlikYukle, durum, kullanilabilir } from './saatlik-veri.js';
 import { sayiYaz, sayiSerbest, kurYaz, yuzdeYaz, tarihYaz, aralikBaslangic, aralikSatirlari, indirge, istatistik, csvUret, tutarOku, yuzdeDegisim, isaret, TURLER } from './hesap.js';
 
 export async function detay(kok) {
@@ -22,6 +23,19 @@ export async function detay(kok) {
   $('.guncel-buyuk', kok).textContent = son ? kurYaz(son[0]) + ' ₺' : '—';
   $('.guncel-not', kok).textContent = `${birim > 1 ? birim + ' ' + kod : '1 ' + kod} · TCMB döviz alış · bülten ${tarihYaz(o.son.tarih, { gun: true })}`;
   if (son && onceki) $('.guncel-degisim', kok).innerHTML = degisimHTML(yuzdeDegisim(son[0], onceki[0])) + `<span class="kucuk soluk">önceki bülten ${tarihYaz(o.son.onceki, { kisa: true })}</span>`;
+
+  // saatlik piyasa kuru: aynı büyük değer, not ve değişim alanları saatlik veriyle yazılır (veri yoksa TCMB kalır)
+  const saatlikYaz = j => {
+    const v = j?.kurlar?.[kod];
+    if (v == null || !kullanilabilir(j)) return;
+    const d = durum(j), g = j.g24?.[kod];
+    $('.guncel-buyuk', kok).textContent = kurYaz(v * birim) + ' ₺';
+    $('.guncel-not', kok).textContent = `${birim > 1 ? birim + ' ' + kod : '1 ' + kod} · saatlik piyasa kuru · ${d.metin} · Piyasa ortalaması, TCMB resmî kuru değildir`;
+    if (g != null) $('.guncel-degisim', kok).innerHTML = degisimHTML(g) + '<span class="kucuk soluk">son 24 saat</span>';
+  };
+  const yenileSaatlik = (yenile = false) => saatlikYukle({ yenile }).then(saatlikYaz).catch(() => {});
+  yenileSaatlik();
+  setInterval(() => { if (document.visibilityState === 'visible') yenileSaatlik(true); }, 10 * 60e3);
 
   // favori
   const fav = $('[data-fav]', kok);

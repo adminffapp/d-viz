@@ -18,7 +18,7 @@
 <link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/work-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/doviz.css?v=a2342541">
+<link rel="stylesheet" href="/assets/doviz.css?v=682b931a">
 <script>
 (function(){var d=document.documentElement;d.classList.remove('js-yok');try{var t=JSON.parse(localStorage.getItem('ffd:tema'));if(t==='acik'||t==='koyu')d.setAttribute('data-tema',t)}catch(e){}})();
 </script>
@@ -40,13 +40,13 @@
   </div>
 </header>
 <main id="icerik">
-<div class="kap sayfa-ust"><nav class="kirinti" aria-label="Sayfa yolu"><ol><li><a href="/">Ana sayfa</a></li><li><a href="/kurlar/">Kurlar</a></li><li><a href="/kur/dolar/">Dolar</a></li><li><span aria-current="page">500 TL kaç dolar</span></li></ol></nav><h1>500 TL kaç dolar?</h1><p class="giris">500 TL = 10,05 USD (TCMB döviz alış, 30 Ekim 2026 Cuma bülteni).</p></div>
+<div class="kap sayfa-ust"><nav class="kirinti" aria-label="Sayfa yolu"><ol><li><a href="/">Ana sayfa</a></li><li><a href="/kurlar/">Kurlar</a></li><li><a href="/kur/dolar/">Dolar</a></li><li><span aria-current="page">500 TL kaç dolar</span></li></ol></nav><h1>500 TL kaç dolar?</h1><p class="giris"><span data-pz-giris>500 TL = 10,05 USD (TCMB döviz alış, 30 Ekim 2026 Cuma bülteni).</span></p></div>
 <div class="kap" style="padding-bottom:48px;display:grid;gap:24px">
   <div class="parca" data-ui><div class="parca-ic"><p class="sonuc-buyuk sayi">500 ₺ = 10,05 USD</p><p class="sonuc-alt">1 USD = 49,7747 ₺ · Kaynak: TCMB gösterge kuru</p>
     <div data-piyasa="cevir" data-kod="USD" data-tutar="500" data-yon="tl-doviz" hidden></div>
     <div class="eylemler" style="margin-top:16px"><a class="dugme" href="/cevirici/?tutar=500&kaynak=TRY&hedef=USD">Başka bir tutarla hesapla</a><a class="dugme ikincil" href="/gecmis-kur/?tutar=500&kod=USD&yon=tl">Geçmiş tarihli hesap</a></div></div></div>
-  <div class="metin"><p>TL tutarı, TCMB döviz alış kuruna bölünerek bulunur; "şu an" tutarı saatte bir güncellenen piyasa kurunu kullanır. Gerçek alım işleminde kuruma göre satış kuru ve komisyon uygulanır; sonuç bu sayfadaki değerden daha az olabilir.</p></div>
-  <div class="parca" data-ui><div class="parca-baslik"><h2>Diğer tutarlar</h2></div><table class="veri" data-pz-tablo data-kod="USD" data-yon="tl-doviz"><thead><tr><th>Tutar</th><th>TCMB ile</th><th data-pz-baslik hidden>Şu an (saatlik)</th></tr></thead><tbody><tr><td><a href="/cevir/100-tl-kac-dolar/">100 TL</a></td><td class="sayi">2,01 USD</td><td class="sayi" data-pz-tutar="100" hidden></td></tr><tr><td><a href="/cevir/250-tl-kac-dolar/">250 TL</a></td><td class="sayi">5,02 USD</td><td class="sayi" data-pz-tutar="250" hidden></td></tr><tr><td><a href="/cevir/1000-tl-kac-dolar/">1.000 TL</a></td><td class="sayi">20,09 USD</td><td class="sayi" data-pz-tutar="1000" hidden></td></tr><tr><td><a href="/cevir/5000-tl-kac-dolar/">5.000 TL</a></td><td class="sayi">100,45 USD</td><td class="sayi" data-pz-tutar="5000" hidden></td></tr><tr><td><a href="/cevir/10000-tl-kac-dolar/">10.000 TL</a></td><td class="sayi">200,91 USD</td><td class="sayi" data-pz-tutar="10000" hidden></td></tr><tr><td><a href="/cevir/50000-tl-kac-dolar/">50.000 TL</a></td><td class="sayi">1.004,53 USD</td><td class="sayi" data-pz-tutar="50000" hidden></td></tr><tr><td><a href="/cevir/100000-tl-kac-dolar/">100.000 TL</a></td><td class="sayi">2.009,05 USD</td><td class="sayi" data-pz-tutar="100000" hidden></td></tr></tbody></table></div>
+  <div class="metin"><p>TL tutarı saatte bir güncellenen piyasa kuruna bölünerek bulunur; veri alınamazsa TCMB döviz alış kuru kullanılır. Gerçek alım işleminde kuruma göre satış kuru ve komisyon uygulanır; sonuç bu sayfadaki değerden daha az olabilir.</p></div>
+  <div class="parca" data-ui><div class="parca-baslik"><h2>Diğer tutarlar</h2></div><table class="veri" data-pz-tablo data-kod="USD" data-yon="tl-doviz"><thead><tr><th>Tutar</th><th>Karşılığı</th></tr></thead><tbody><tr><td><a href="/cevir/100-tl-kac-dolar/">100 TL</a></td><td class="sayi" data-pz-tutar="100">2,01 USD</td></tr><tr><td><a href="/cevir/250-tl-kac-dolar/">250 TL</a></td><td class="sayi" data-pz-tutar="250">5,02 USD</td></tr><tr><td><a href="/cevir/1000-tl-kac-dolar/">1.000 TL</a></td><td class="sayi" data-pz-tutar="1000">20,09 USD</td></tr><tr><td><a href="/cevir/5000-tl-kac-dolar/">5.000 TL</a></td><td class="sayi" data-pz-tutar="5000">100,45 USD</td></tr><tr><td><a href="/cevir/10000-tl-kac-dolar/">10.000 TL</a></td><td class="sayi" data-pz-tutar="10000">200,91 USD</td></tr><tr><td><a href="/cevir/50000-tl-kac-dolar/">50.000 TL</a></td><td class="sayi" data-pz-tutar="50000">1.004,53 USD</td></tr><tr><td><a href="/cevir/100000-tl-kac-dolar/">100.000 TL</a></td><td class="sayi" data-pz-tutar="100000">2.009,05 USD</td></tr></tbody></table></div>
 </div><div class="kap"><div class="reklam" data-yuva="orta" aria-label="Reklam alanı"></div></div>
 </main>
 <div id="capraz-kap"></div>
@@ -64,7 +64,7 @@
     <div class="alt-telif">© <span id="yil">2026</span> FF-App Labs. Tüm hakları saklıdır.</div>
   </div>
 </div></footer>
-<script type="module" src="/assets/js/app.js?v=a2342541"></script>
-<script type="module" src="/assets/js/piyasa.js?v=a2342541"></script>
+<script type="module" src="/assets/js/app.js?v=682b931a"></script>
+<script type="module" src="/assets/js/piyasa.js?v=682b931a"></script>
 </body>
 </html>

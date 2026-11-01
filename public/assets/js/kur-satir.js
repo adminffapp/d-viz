@@ -19,19 +19,19 @@ export function satirHTML(m, r, oz, { fav = false } = {}) {
   const sinif = isaret(oz?.g30) > 0 ? 'yuk' : isaret(oz?.g30) < 0 ? 'dus' : 'sabit';
   const renk = sinif === 'yuk' ? 'var(--yuk)' : sinif === 'dus' ? 'var(--dus)' : 'var(--soluk)';
   const birimNot = m.birim > 1 ? `${m.birim} ${m.kod} için` : m.kisa;
-  return `<tr data-kod="${m.kod}" data-ad="${k(m.ad)}" data-slug="${m.slug}" data-deger="${r[0] / m.birim}" data-degisim="${p ?? ''}" data-sira="${m.sira}">
+  return `<tr data-kod="${m.kod}" data-ad="${k(m.ad)}" data-slug="${m.slug}" data-deger="${r[0] / m.birim}" data-degisim="${p ?? ''}" data-sira="${m.sira}" data-birim="${m.birim}">
 <td><span class="kur-ad"><span class="kod">${m.kod}</span><span class="metin"><a class="ad" href="/kur/${m.slug}/">${k(m.ad)}</a><small>${k(birimNot)}</small></span></span></td>
-<td class="sayi">${k(kurYaz(r[0]))}</td>
-<td class="sayi gizle-mobil">${k(kurYaz(r[1]))}</td>
-<td>${degisimHTML(p)}</td>
-<td class="gizle-mobil"><svg class="spark" viewBox="0 0 96 28" role="img" aria-label="Son 30 bülten çizgisi"><path d="${sparkYol(oz ? oz.spark : [])}" style="stroke:${renk}"/></svg></td>
+<td class="sayi pz-alis">${k(kurYaz(r[0]))}</td>
+<td class="sayi gizle-mobil pz-satis">${k(kurYaz(r[1]))}</td>
+<td class="pz-degisim">${degisimHTML(p)}</td>
+<td class="gizle-mobil pz-spark"><svg class="spark" viewBox="0 0 96 28" role="img" aria-label="Son 30 bülten çizgisi"><path d="${sparkYol(oz ? oz.spark : [])}" style="stroke:${renk}"/></svg></td>
 <td><button class="fav" type="button" aria-pressed="${fav}" aria-label="${k(m.ad)} favorilere ${fav ? 'çıkar' : 'ekle'}" data-fav="${m.kod}">${FAV}</button></td>
 </tr>`;
 }
 export const TABLO_BASLIK = `<thead><tr>
 <th scope="col" aria-sort="none"><button type="button" data-sirala="ad">Para birimi</button></th>
 <th scope="col" aria-sort="none"><button type="button" data-sirala="deger">Alış (₺)</button></th>
-<th scope="col" class="gizle-mobil">Satış (₺)</th>
+<th scope="col" class="gizle-mobil pz-satis">Satış (₺)</th>
 <th scope="col" aria-sort="none"><button type="button" data-sirala="degisim">Değişim</button></th>
-<th scope="col" class="gizle-mobil">30 bülten</th>
+<th scope="col" class="gizle-mobil pz-spark-baslik">30 bülten</th>
 <th scope="col"><span class="gizli-okur">Favori</span></th></tr></thead>`;

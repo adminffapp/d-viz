@@ -8,7 +8,7 @@ const GERI = [['1a', '1 ay'], ['6a', '6 ay'], ['1y', '1 yıl'], ['3y', '3 yıl']
 
 export function anaSayfa(c) {
   const { meta, son, ozet } = c;
-  const liste = meta.filter(m => m.populer).sort((a, b) => a.sira - b.sira).slice(0, 5).map(m => { const r = son.kurlar[m.kod]; if (!r) return ''; return `<li><a href="/kur/${m.slug}/"><span class="kod">${m.kod}</span><span class="ad">${e(m.ad)}${m.birim > 1 ? `<small>${m.birim} ${m.kod} için</small>` : ''}</span><span class="sayi deger">${kurYaz(r[0])}</span><span class="sayi deger">${r[1] == null ? '—' : kurYaz(r[1])}</span>${degisimHTML(ozet.ozet[m.kod]?.g1)}</a></li>`; }).join('');
+  const liste = meta.filter(m => m.populer).sort((a, b) => a.sira - b.sira).slice(0, 5).map(m => { const r = son.kurlar[m.kod]; if (!r) return ''; return `<li><a href="/kur/${m.slug}/" data-pz-kod="${m.kod}" data-birim="${m.birim}"><span class="kod">${m.kod}</span><span class="ad">${e(m.ad)}${m.birim > 1 ? `<small>${m.birim} ${m.kod} için</small>` : ''}</span><span class="sayi deger pz-alis">${kurYaz(r[0])}</span><span class="sayi deger pz-satis">${r[1] == null ? '—' : kurYaz(r[1])}</span><span class="pz-degisim">${degisimHTML(ozet.ozet[m.kod]?.g1)}</span></a></li>`; }).join('');
   const gunluk = '/tarihe-gore-kur/';
   const govde = `
 <section class="hero" aria-labelledby="h1">
@@ -17,7 +17,7 @@ export function anaSayfa(c) {
       <div class="hero-ust">
       <div class="hero-metin">
         <h1 id="h1" class="gir">Popüler kurlar</h1>
-        <ul class="hero-liste gir" style="--s:1" aria-label="Popüler kurlar"><li class="hero-liste-baslik" aria-hidden="true"><span></span><span></span><span>Alış ₺</span><span>Satış ₺</span><span>Günlük</span></li>${liste}</ul>
+        <ul class="hero-liste gir" style="--s:1" aria-label="Popüler kurlar"><li class="hero-liste-baslik" aria-hidden="true"><span></span><span></span><span class="pz-alis-b">Alış ₺</span><span class="pz-satis-b">Satış ₺</span><span class="pz-gun-b">Günlük</span></li>${liste}</ul>
         <a class="dugme ikincil gir" style="--s:2" href="/kurlar/">Kurlar</a>
       </div>
       <div class="madeni-sahne">
@@ -68,7 +68,6 @@ export function anaSayfa(c) {
   </div>
   <noscript><div class="kap"><p class="not-kutu" style="margin-top:16px">Hesaplayıcı JavaScript gerektirir. Aşağıdaki tablo ve sayfalar yine de çalışır.</p></div></noscript>
 </section>
-<section class="kap" data-piyasa="liste" aria-labelledby="piyasa-b" style="padding-block:24px" hidden></section>
 
 <section class="blok sag" aria-labelledby="b0">
   <div class="kap"><div class="blok-grid">
