@@ -194,11 +194,16 @@
    "zaman": "2026-11-19T20:58:44.159Z",
    "sonuc": "degisiklik-yok",
    "mesaj": "Yeni bülten yok (hafta sonu, tatil ya da henüz yayımlanmadı)"
+  },
+  {
+   "zaman": "2026-11-20T12:46:02.686Z",
+   "sonuc": "tamam",
+   "mesaj": "1 yeni bülten, son bülten 2026-11-20"
   }
  ],
- "sonBulten": "2026-11-19",
- "sonBasari": "2026-11-19T12:45:57.090Z",
- "sonKontrol": "2026-11-19T20:58:44.159Z",
- "sonSonuc": "degisiklik-yok",
- "sonMesaj": "Yeni bülten yok (hafta sonu, tatil ya da henüz yayımlanmadı)"
+ "sonBulten": "2026-11-20",
+ "sonBasari": "2026-11-20T12:46:02.686Z",
+ "sonKontrol": "2026-11-20T12:46:02.686Z",
+ "sonSonuc": "tamam",
+ "sonMesaj": "1 yeni bülten, son bülten 2026-11-20"
 }
