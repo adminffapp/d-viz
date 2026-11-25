@@ -219,11 +219,16 @@
    "zaman": "2026-11-24T22:46:09.156Z",
    "sonuc": "tamam",
    "mesaj": "1 yeni bülten, son bülten 2026-11-24"
+  },
+  {
+   "zaman": "2026-11-25T21:59:02.819Z",
+   "sonuc": "tamam",
+   "mesaj": "1 yeni bülten, son bülten 2026-11-25"
   }
  ],
- "sonBulten": "2026-11-24",
- "sonBasari": "2026-11-24T22:46:09.156Z",
- "sonKontrol": "2026-11-24T22:46:09.156Z",
+ "sonBulten": "2026-11-25",
+ "sonBasari": "2026-11-25T21:59:02.819Z",
+ "sonKontrol": "2026-11-25T21:59:02.819Z",
  "sonSonuc": "tamam",
- "sonMesaj": "1 yeni bülten, son bülten 2026-11-24"
+ "sonMesaj": "1 yeni bülten, son bülten 2026-11-25"
 }
